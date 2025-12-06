@@ -1,7 +1,7 @@
 'use client'
 
 import { Pagination } from '@heroui/react'
-import { redirect, usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 interface Props {
@@ -18,7 +18,10 @@ export const PaginationUI = ({ className, totalPages }: Props) => {
     const currentPage = Number(searchParams.get('page') || '1');
 
     if (currentPage < 1 || isNaN(currentPage)) {
-        redirect(pathname);
+        const params = new URLSearchParams(searchParams);
+
+        params.set('page', '1');
+        router.replace(`${pathname}?${params.toString()}`);
     }
 
     const changePage = (page: number) => {

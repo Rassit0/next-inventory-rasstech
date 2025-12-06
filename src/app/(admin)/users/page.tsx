@@ -1,5 +1,6 @@
 import { TopContent, UsersTable } from "@/modules/admin/users";
 import { PaginationUI } from "@/ui";
+import { Suspense } from "react";
 
 export default function UsersPage() {
   return (
@@ -11,14 +12,16 @@ export default function UsersPage() {
         </div>
 
         <div className="w-full overflow-auto">
-          <TopContent totalItems={50} take={12}/>
+          <TopContent totalItems={50} take={12} />
           <UsersTable />
         </div>
 
-        <PaginationUI
-          className="flex items-center justify-center mt-3"
-          totalPages={10}
-        />
+        <Suspense fallback={<div>Loading...</div>}>
+          <PaginationUI
+            className="flex items-center justify-center mt-3"
+            totalPages={10}
+          />
+        </Suspense>
       </div>
     </>
   );
