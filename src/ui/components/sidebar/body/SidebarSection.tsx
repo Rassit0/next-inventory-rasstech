@@ -40,7 +40,7 @@ export const SidebarSection = ({ section, isSidebarOpen, hoverSidebar }: Props) 
             )}
 
             <div className={clsx(
-                `transition-[padding] duration-300 `,
+                `transition-[padding] duration-300 space-y-2`,
                 {
                     'pl-6': isSidebarOpen,
                     'pl-6 md:pl-2 group-hover:pl-6': !isSidebarOpen

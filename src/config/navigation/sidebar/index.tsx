@@ -1,6 +1,5 @@
-import { FaUsers, FaUserFriends, FaPlus, FaList, FaFileImport, FaExchangeAlt } from 'react-icons/fa';
-import { GiCook } from 'react-icons/gi';
-import { Archive02Icon, ChefHatIcon, Home01Icon, LockPasswordIcon, ProductLoadingIcon, ShieldUserIcon, Store01Icon, Tag01Icon, UserGroupIcon, UserMultiple02Icon, WarehouseIcon, WeightScaleIcon } from 'hugeicons-react';
+import { FaPlus, FaList, FaFileImport, FaExchangeAlt } from 'react-icons/fa';
+import { Archive02Icon, ChefHatIcon, Home01Icon, LockPasswordIcon, ProductLoadingIcon, RepairIcon, Setting07Icon, ShieldUserIcon, Store01Icon, Tag01Icon, UserGroupIcon, UserMultiple02Icon, WarehouseIcon, WeightScaleIcon } from 'hugeicons-react';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { HotelBellIcon } from '@hugeicons/core-free-icons';
 import { NavSection } from '@/ui';
@@ -14,7 +13,7 @@ export const sidebarNavigation: NavSection[] = [
         href: '/',
         action: 'read',
         subject: 'home',
-        icon: <Home01Icon strokeWidth={2} size={20} />,
+        icon: <Home01Icon strokeWidth={2} size={25} />,
       },
     ],
   },
@@ -25,67 +24,76 @@ export const sidebarNavigation: NavSection[] = [
         label: 'Roles y Permisos',
         href: '/roles-permissions',
         action: 'read',
-        subject: 'roles-permissions',
-        icon: <LockPasswordIcon strokeWidth={2} size={20} />,
+        subject: 'app',
+        icon: <LockPasswordIcon strokeWidth={2} size={25} />,
       },
       {
-        label: 'Almacenes',
+        label: 'Usuarios',
+        href: '/users',
+        action: 'list_user',
+        subject: 'app',
+        icon: <UserMultiple02Icon strokeWidth={2} size={25} />,
+      },
+      {
+        label: 'Configuraciones',
         // href: '/dashboard/warehouses',
-        action: 'read',
-        subject: 'warehouses',
-        icon: <WarehouseIcon strokeWidth={2} size={20} />,
+        action: 'settings',
+        subject: 'app',
+        icon: <RepairIcon strokeWidth={2} size={25} />,
         children: [
-          { label: 'Ver todos', href: '/dashboard/warehouses', icon: <FaList size={20} />, action: 'read', subject: 'warehouses' },
-          { label: 'Crear nuevo', href: '/dashboard/warehouses/create', icon: <FaPlus size={20} />, action: 'create', subject: 'warehouses' },
-          { label: 'Crear nuevo2', href: '/dashboard/warehouses/create', icon: <FaPlus size={20} />, action: 'create', subject: 'warehouses' },
+          { label: 'Sucursales', href: '/branches', icon: <Store01Icon strokeWidth={2} size={25} />, action: 'settings', subject: 'app' },
+          { label: 'Almacenes', href: '/warehouses', icon: <WarehouseIcon strokeWidth={2} size={25} />, action: 'settings', subject: 'app' },
+          { label: 'Categorías', href: '/categories', icon: <Tag01Icon strokeWidth={2} size={25} />, action: 'settings', subject: 'app' },
+          { label: 'Proveedores', href: '/suppliers', icon: <Store01Icon strokeWidth={2} size={25} />, action: 'settings', subject: 'app' },
+          { label: 'Unidades', href: '/units', icon: <WeightScaleIcon strokeWidth={2} size={25} />, action: 'settings', subject: 'app' },
         ],
       },
     ],
   },
-  {
-    title: 'Configuración',
-    items: [
-      {
-        label: 'Sucursales',
-        // href: '/dashboard/branches',
-        action: 'read',
-        subject: 'branches',
-        icon: <Store01Icon strokeWidth={2} size={20} />,
-        children: [
-          { label: 'Ver todas', href: '/dashboard/branches', action: 'read', subject: 'branches' },
-          { label: 'Crear nueva', href: '/dashboard/branches/create', action: 'create', subject: 'branches' },
-          { label: 'Crear nueva', href: '/dashboard/branches/create', action: 'create', subject: 'branches' },
-          { label: 'Crear nueva2', href: '/dashboard/branches/create', icon: <FaPlus size={20} />, action: 'create', subject: 'branches' },
-          {
-            label: 'SubMenu1', icon: <FaPlus size={20} />, action: 'create', subject: 'branches', children: [
-              { label: 'SubMenu2', href: '/dashboard/branches/subMenu2', icon: <FaPlus size={20} />, action: 'create', subject: 'branches' },
-              { label: 'SubMenu', href: '/dashboard/branches/subMenu', icon: <FaPlus size={20} />, action: 'create', subject: 'branches' },
-              { label: 'SubMenu3', href: '/dashboard/branches/subMenu3', icon: <FaPlus size={20} />, action: 'create', subject: 'branches' },
-            ],
-          },
-          {
-            label: 'SubMenu2', icon: <FaPlus size={20} />, action: 'create', subject: 'branches', children: [
-              { label: 'SubMenu22', href: '/dashboard/branches/subMenu2', icon: <FaPlus size={20} />, action: 'create', subject: 'branches' },
-              // { label: 'SubMenu222W', href: '/dashboard/branches/subMenu222', icon: <FaPlus size={20} />, action: 'create', subject: 'branches' },
-              // { label: 'SubMenu23', href: '/dashboard/branches/subMenu23', icon: <FaPlus size={20} />, action: 'create', subject: 'branches' },
-            ],
-          },
-        ],
-      },
-      {
-        label: 'Almacenes',
-        // href: '/dashboard/warehouses',
-        action: 'read',
-        subject: 'warehouses',
-        icon: <WarehouseIcon strokeWidth={2} size={20} />,
-        children: [
-          { label: 'Ver todos', href: '/dashboard/warehouses', icon: <FaList size={20} />, action: 'read', subject: 'warehouses' },
-          { label: 'Crear nuevo', href: '/dashboard/warehouses/create', icon: <FaPlus size={20} />, action: 'create', subject: 'warehouses' },
-          { label: 'Crear nuevo2', href: '/dashboard/warehouses/create', icon: <FaPlus size={20} />, action: 'create', subject: 'warehouses' },
-        ],
-      },
-    ],
-  },
+  // {
+  //   title: 'Configuración',
+  //   items: [
+  //     {
+  //       label: 'Sucursales',
+  //       // href: '/dashboard/branches',
+  //       action: 'read',
+  //       subject: 'branches',
+  //       icon: <Store01Icon strokeWidth={2} size={25} />,
+  //       children: [
+  //         { label: 'Ver todas', href: '/dashboard/branches', action: 'read', subject: 'branches' },
+  //         { label: 'Crear nueva', href: '/dashboard/branches/create', action: 'create', subject: 'branches' },
+  //         { label: 'Crear nueva', href: '/dashboard/branches/create', action: 'create', subject: 'branches' },
+  //         { label: 'Crear nueva2', href: '/dashboard/branches/create', icon: <FaPlus size={25} />, action: 'create', subject: 'branches' },
+  //         {
+  //           label: 'SubMenu1', icon: <FaPlus size={25} />, action: 'create', subject: 'branches', children: [
+  //             { label: 'SubMenu2', href: '/dashboard/branches/subMenu2', icon: <FaPlus size={25} />, action: 'create', subject: 'branches' },
+  //             { label: 'SubMenu', href: '/dashboard/branches/subMenu', icon: <FaPlus size={25} />, action: 'create', subject: 'branches' },
+  //             { label: 'SubMenu3', href: '/dashboard/branches/subMenu3', icon: <FaPlus size={25} />, action: 'create', subject: 'branches' },
+  //           ],
+  //         },
+  //         {
+  //           label: 'SubMenu2', icon: <FaPlus size={25} />, action: 'create', subject: 'branches', children: [
+  //             { label: 'SubMenu22', href: '/dashboard/branches/subMenu2', icon: <FaPlus size={25} />, action: 'create', subject: 'branches' },
+  //             // { label: 'SubMenu222W', href: '/dashboard/branches/subMenu222', icon: <FaPlus size={25} />, action: 'create', subject: 'branches' },
+  //             // { label: 'SubMenu23', href: '/dashboard/branches/subMenu23', icon: <FaPlus size={25} />, action: 'create', subject: 'branches' },
+  //           ],
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       label: 'Almacenes',
+  //       // href: '/dashboard/warehouses',
+  //       action: 'read',
+  //       subject: 'warehouses',
+  //       icon: <WarehouseIcon strokeWidth={2} size={25} />,
+  //       children: [
+  //         { label: 'Ver todos', href: '/dashboard/warehouses', icon: <FaList size={25} />, action: 'read', subject: 'warehouses' },
+  //         { label: 'Crear nuevo', href: '/dashboard/warehouses/create', icon: <FaPlus size={25} />, action: 'create', subject: 'warehouses' },
+  //         { label: 'Crear nuevo2', href: '/dashboard/warehouses/create', icon: <FaPlus size={25} />, action: 'create', subject: 'warehouses' },
+  //       ],
+  //     },
+  //   ],
+  // },
   {
     title: 'Inventario',
     items: [
@@ -94,11 +102,11 @@ export const sidebarNavigation: NavSection[] = [
         // href: '/dashboard/products',
         action: 'read',
         subject: 'products',
-        icon: <ProductLoadingIcon strokeWidth={2} size={20} />,
+        icon: <ProductLoadingIcon strokeWidth={2} size={25} />,
         children: [
-          { label: 'Todos', href: '/dashboard/products', icon: <FaList size={20} />, action: 'read', subject: 'products' },
-          { label: 'Nuevo producto', href: '/dashboard/products/add', icon: <FaPlus size={20} />, action: 'create', subject: 'products' },
-          { label: 'Importar', href: '/dashboard/products/import', icon: <FaFileImport size={20} />, action: 'create', subject: 'products' },
+          { label: 'Todos', href: '/dashboard/products', icon: <FaList size={25} />, action: 'read', subject: 'products' },
+          { label: 'Nuevo producto', href: '/dashboard/products/add', icon: <FaPlus size={25} />, action: 'create', subject: 'products' },
+          { label: 'Importar', href: '/dashboard/products/import', icon: <FaFileImport size={25} />, action: 'create', subject: 'products' },
         ],
       },
       {
@@ -106,10 +114,10 @@ export const sidebarNavigation: NavSection[] = [
         // href: '/dashboard/categories',
         action: 'read',
         subject: 'categories',
-        icon: <Tag01Icon strokeWidth={2} size={20} />,
+        icon: <Tag01Icon strokeWidth={2} size={25} />,
         children: [
-          { label: 'Todas', href: '/dashboard/categories', icon: <FaList size={20} />, action: 'read', subject: 'categories' },
-          { label: 'Nueva categoría', href: '/dashboard/categories/create', icon: <FaPlus size={20} />, action: 'create', subject: 'categories' },
+          { label: 'Todas', href: '/dashboard/categories', icon: <FaList size={25} />, action: 'read', subject: 'categories' },
+          { label: 'Nueva categoría', href: '/dashboard/categories/create', icon: <FaPlus size={25} />, action: 'create', subject: 'categories' },
         ],
       },
       {
@@ -117,10 +125,10 @@ export const sidebarNavigation: NavSection[] = [
         // href: '/dashboard/units',
         action: 'read',
         subject: 'units',
-        icon: <WeightScaleIcon strokeWidth={2} size={20} />,
+        icon: <WeightScaleIcon strokeWidth={2} size={25} />,
         children: [
-          { label: 'Todas', href: '/dashboard/units', icon: <FaList size={20} />, action: 'read', subject: 'units' },
-          { label: 'Nueva unidad', href: '/dashboard/units/create', icon: <FaPlus size={20} />, action: 'create', subject: 'units' },
+          { label: 'Todas', href: '/dashboard/units', icon: <FaList size={25} />, action: 'read', subject: 'units' },
+          { label: 'Nueva unidad', href: '/dashboard/units/create', icon: <FaPlus size={25} />, action: 'create', subject: 'units' },
         ],
       },
       {
@@ -128,10 +136,10 @@ export const sidebarNavigation: NavSection[] = [
         // href: '/dashboard/inventory',
         action: 'read',
         subject: 'inventory',
-        icon: <Archive02Icon strokeWidth={2} size={20} />,
+        icon: <Archive02Icon strokeWidth={2} size={25} />,
         children: [
-          { label: 'Ver inventario', href: '/dashboard/inventory', icon: <FaList size={20} />, action: 'read', subject: 'inventory' },
-          { label: 'Ajustes de stock', href: '/dashboard/inventory/adjust', icon: <FaExchangeAlt size={20} />, action: 'update', subject: 'inventory' },
+          { label: 'Ver inventario', href: '/dashboard/inventory', icon: <FaList size={25} />, action: 'read', subject: 'inventory' },
+          { label: 'Ajustes de stock', href: '/dashboard/inventory/adjust', icon: <FaExchangeAlt size={25} />, action: 'update', subject: 'inventory' },
         ],
       },
     ],
@@ -144,10 +152,10 @@ export const sidebarNavigation: NavSection[] = [
         // href: '/dashboard/orders',
         action: 'read',
         subject: 'orders',
-        icon: <HugeiconsIcon icon={HotelBellIcon} strokeWidth={2} size={20} />,
+        icon: <HugeiconsIcon icon={HotelBellIcon} strokeWidth={2} size={25} />,
         children: [
-          { label: 'Todos', href: '/dashboard/orders', icon: <FaList size={20} />, action: 'read', subject: 'orders' },
-          { label: 'Pendientes', href: '/dashboard/orders/pending', icon: <FaExchangeAlt size={20} />, action: 'update', subject: 'orders' },
+          { label: 'Todos', href: '/dashboard/orders', icon: <FaList size={25} />, action: 'read', subject: 'orders' },
+          { label: 'Pendientes', href: '/dashboard/orders/pending', icon: <FaExchangeAlt size={25} />, action: 'update', subject: 'orders' },
         ],
       },
       {
@@ -155,10 +163,10 @@ export const sidebarNavigation: NavSection[] = [
         // href: '/dashboard/kitchen',
         action: 'read',
         subject: 'kitchen',
-        icon: <ChefHatIcon strokeWidth={2} size={20} />,
+        icon: <ChefHatIcon strokeWidth={2} size={25} />,
         children: [
-          { label: 'Pedidos en cocina', href: '/dashboard/kitchen', icon: <FaList size={20} />, action: 'read', subject: 'kitchen' },
-          { label: 'Historial', href: '/dashboard/kitchen/history', icon: <FaList size={20} />, action: 'read', subject: 'kitchen' },
+          { label: 'Pedidos en cocina', href: '/dashboard/kitchen', icon: <FaList size={25} />, action: 'read', subject: 'kitchen' },
+          { label: 'Historial', href: '/dashboard/kitchen/history', icon: <FaList size={25} />, action: 'read', subject: 'kitchen' },
         ],
       },
     ],
@@ -171,10 +179,10 @@ export const sidebarNavigation: NavSection[] = [
         // href: '/dashboard/clients',
         action: 'manage',
         subject: 'clients',
-        icon: <UserGroupIcon strokeWidth={2} size={20} />,
+        icon: <UserGroupIcon strokeWidth={2} size={25} />,
         children: [
-          { label: 'Todos', href: '/dashboard/clients', icon: <FaList size={20} />, action: 'read', subject: 'clients' },
-          { label: 'Nuevo cliente', href: '/dashboard/clients/create', icon: <FaPlus size={20} />, action: 'create', subject: 'clients' },
+          { label: 'Todos', href: '/dashboard/clients', icon: <FaList size={25} />, action: 'read', subject: 'clients' },
+          { label: 'Nuevo cliente', href: '/dashboard/clients/create', icon: <FaPlus size={25} />, action: 'create', subject: 'clients' },
         ],
       },
       {
@@ -182,10 +190,10 @@ export const sidebarNavigation: NavSection[] = [
         // href: '/dashboard/users',
         action: 'manage',
         subject: 'users',
-        icon: <UserMultiple02Icon strokeWidth={2} size={20} />,
+        icon: <UserMultiple02Icon strokeWidth={2} size={25} />,
         children: [
-          { label: 'Todos', href: '/dashboard/users', icon: <FaList size={20} />, action: 'read', subject: 'users' },
-          { label: 'Nuevo usuario', href: '/dashboard/users/create', icon: <FaPlus size={20} />, action: 'create', subject: 'users' },
+          { label: 'Todos', href: '/dashboard/users', icon: <FaList size={25} />, action: 'read', subject: 'users' },
+          { label: 'Nuevo usuario', href: '/dashboard/users/create', icon: <FaPlus size={25} />, action: 'create', subject: 'users' },
         ],
       },
       {
@@ -193,10 +201,10 @@ export const sidebarNavigation: NavSection[] = [
         // href: '/dashboard/roles',
         action: 'manage',
         subject: 'roles',
-        icon: <ShieldUserIcon strokeWidth={2} size={20} />,
+        icon: <ShieldUserIcon strokeWidth={2} size={25} />,
         children: [
-          { label: 'Todos', href: '/dashboard/roles', icon: <FaList size={20} />, action: 'read', subject: 'roles' },
-          { label: 'Nuevo rol', href: '/dashboard/roles/create', icon: <FaPlus size={20} />, action: 'create', subject: 'roles' },
+          { label: 'Todos', href: '/dashboard/roles', icon: <FaList size={25} />, action: 'read', subject: 'roles' },
+          { label: 'Nuevo rol', href: '/dashboard/roles/create', icon: <FaPlus size={25} />, action: 'create', subject: 'roles' },
         ],
       },
     ],

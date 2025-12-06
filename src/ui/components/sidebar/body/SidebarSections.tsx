@@ -11,7 +11,7 @@ interface Props {
 export const SidebarSections = ({ sections, isSidebarOpen, hoverSidebar }: Props) => {
 
     return (
-        <div className={`pb-2 space-y-4`}>
+        <div className={`pb-2 space-y-2`}>
             {sections.map((section, index) => (
                 <SidebarSection key={index} section={section} isSidebarOpen={isSidebarOpen} hoverSidebar={hoverSidebar} />
             ))}

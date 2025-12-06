@@ -1,4 +1,5 @@
-export type Action = 'read' | 'create' | 'update' | 'delete' | 'manage'
+// export type Action = 'read' | 'create' | 'update' | 'delete' | 'manage'
+export type Action = string;
 
 export type NavItem = NavItemWithChildren | NavItemWithoutChildren;
 

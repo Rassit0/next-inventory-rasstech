@@ -182,7 +182,7 @@ export const SidebarItem = ({ item, isSidebarOpen, hoverSidebar, updateHeightChi
                 <div
                     ref={submenuRef}
                     className={clsx(
-                        `pl-1 flex flex-col space-y-1 overflow-hidden 
+                        `pl-1 flex flex-col overflow-hidden space-y-2
                         transition-[max-height] duration-300`,
                         {
                             'max-h-(--submenu-height)': openSubMenu,   // abrir: animando hasta la altura calculada

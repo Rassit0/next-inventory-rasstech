@@ -1,5 +1,5 @@
 import { appFont } from '@/config/fonts/fonts';
-import { Providers } from '@/shared';
+import { Providers } from '@/shared/providers';
 import { Button, Checkbox, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalProps, useDisclosure } from '@heroui/react'
 import { Add01Icon } from 'hugeicons-react';
 import React from 'react'

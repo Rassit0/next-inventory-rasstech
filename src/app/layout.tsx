@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Providers } from "@/shared";
+import { Providers } from "@/shared/providers";
 import { geistMono, geistSans } from "@/config/fonts/fonts";
 
 export const metadata: Metadata = {

@@ -8,7 +8,7 @@ interface State {
 }
 
 export const useUIStore = create<State>((set) => ({
-    isSidebarOpen: false,
+    isSidebarOpen: true,
 
     openSidebar: () => set({ isSidebarOpen: true }),
     closeSidebar: () => set({ isSidebarOpen: false }),
