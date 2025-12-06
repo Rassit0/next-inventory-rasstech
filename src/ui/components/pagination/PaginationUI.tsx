@@ -36,6 +36,8 @@ export const PaginationUI = ({ className, totalPages }: Props) => {
     return (
         <Pagination
             className={className}
+            // isCompact
+            size='sm'
             showControls
             initialPage={currentPage}
             total={totalPages}

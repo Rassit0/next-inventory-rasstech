@@ -99,9 +99,7 @@ export const BranchesTable = () => {
                                 <ViewIcon />
                             </span>
                         </Tooltip>
-                        <Tooltip content="Editar usuario">
                             <EditModal />
-                        </Tooltip>
                         <Tooltip color="danger" content="Eliminar usuario">
                             <span className="text-lg text-danger cursor-pointer active:opacity-50">
                                 <Delete02Icon />

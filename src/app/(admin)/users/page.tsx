@@ -11,16 +11,17 @@ export default function UsersPage() {
           <h1 className="text-3xl text-foreground">👨‍🦰 Usuarios</h1>
         </div>
 
+        <TopContent totalItems={50} take={12} />
         <div className="w-full overflow-auto">
-          <TopContent totalItems={50} take={12} />
           <UsersTable />
         </div>
 
         <Suspense fallback={<div>Loading...</div>}>
-          <PaginationUI
-            className="flex items-center justify-center mt-3"
-            totalPages={10}
-          />
+          <div className="w-full overflow-x-auto overflow-y-hidden flex items-center justify-center mt-3">
+            <PaginationUI
+              totalPages={10}
+            />
+          </div>
         </Suspense>
       </div>
     </>

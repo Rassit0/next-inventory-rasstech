@@ -1,6 +1,6 @@
 'use client'
 import { Providers } from "@/shared/providers";
-import { Button, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Textarea, useDisclosure } from "@heroui/react";
+import { Button, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Textarea, Tooltip, useDisclosure } from "@heroui/react";
 import { Edit02Icon } from "hugeicons-react";
 import { useState } from "react";
 
@@ -13,15 +13,17 @@ export const EditModal = () => {
 
     return (
         <>
-            <Button
-                onPress={onOpen}
-                radius="full"
-                variant="light"
-                color="warning"
-                isIconOnly
-            >
-                <Edit02Icon />
-            </Button>
+            <Tooltip color="warning" content="Editar sucursal">
+                <Button
+                    onPress={onOpen}
+                    radius="full"
+                    variant="light"
+                    color="warning"
+                    isIconOnly
+                >
+                    <Edit02Icon />
+                </Button>
+            </Tooltip>
 
             <Modal isOpen={isOpen} scrollBehavior='inside' size='xl' onClose={onClose}>
                 <Providers>
