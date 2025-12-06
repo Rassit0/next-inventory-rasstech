@@ -1,0 +1,9 @@
+import { PageHeader } from "@/ui";
+
+export default function Home() {
+    return (
+        <div>
+            <h1>Home Page</h1>
+        </div>
+    );
+}

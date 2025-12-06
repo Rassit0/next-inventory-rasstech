@@ -1,26 +1,79 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@plugin './hero.ts';
+/* Note: You may need to change the path to fit your project structure */
+@source '../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
+@custom-variant dark (&:is(.dark *));
+@custom-variant valery-dark (&:is(.valery-dark *));
+@custom-variant valery-light (&:is(.valery-light *));
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* Tailwind CSS: coloca esto en tu archivo global o dentro de @layer components */
+@layer components {
+  #sidebar_scroll {
+    /* Firefox */
+    /* scrollbar-width: thin;
+    scrollbar-color: transparent transparent; */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Chrome / Edge / Safari */
+    &::-webkit-scrollbar {
+      width: 4px; /* ancho total del scroll */
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: transparent;
+      border: 1px solid transparent;
+      /* border-radius: 9999px; */
+      background-clip: content-box;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(100,100,100,0.5);
+      border: 1px solid transparent;
+    }
+  }
+
+  #sidebar_scroll:hover {
+    &::-webkit-scrollbar {
+      width: 4px; /* ancho total del scroll */
+    }
+
+    &::-webkit-scrollbar-track:hover {
+      background-color: transparent;
+    }
+  }
+
+  
+  #sidebar_scroll:hover{
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(100,100,100,0.5);
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: #818b99;
+    }
+  }
+ 
+
+  /* #sidebar:hover::-webkit-scrollbar {
+    width: 5px;
+  } */
+
+  .valery-dark .card-shadow {
+    @apply rounded-xl bg-[#3e446a49];
+    box-shadow:
+      0 0 0 1px rgba(15, 23, 42, 0.08),
+      0 0 20px 4px rgba(15, 23, 42, 0.25);
+  }
+
+  .valery-light .card-shadow {
+    @apply rounded-xl bg-white overflow-hidden;
+  box-shadow: 1px 4px 10px rgba(15, 23, 42, 0.2);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
+
+
+
+
