@@ -12,7 +12,7 @@ export const SidebarFooter = ({isSidebarOpen}: Props) => {
         // router.push('/login');
     };
     return (
-        <div>
+        <div className='pb-8'>
             {/* <!-- Cerrar sesión --> */}
             <button
                 onClick={handleLogout}

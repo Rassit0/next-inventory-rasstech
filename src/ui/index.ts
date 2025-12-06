@@ -14,3 +14,5 @@ export * from './components/navbar/ButtonOpenSidebar'
 export * from './components/navbar/ButtonTheme'
 
 export * from './components/navbar/UserMenu'
+
+export * from './components/pagination/PaginationUI'
