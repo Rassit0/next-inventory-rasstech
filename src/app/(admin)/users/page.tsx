@@ -1,18 +1,19 @@
 import { TopContent, UsersTable } from "@/modules/admin/users";
-import { PaginationUI } from "@/ui";
+import { PageHeader, PaginationUI } from "@/ui";
 import { Suspense } from "react";
 
 export default function UsersPage() {
   return (
     <>
-      {/* <h1 className="text-2xl font-semibold mb-4">Usuarios</h1> */}
       <div className="w-full max-w-full card-shadow space-y-2 py-4">
-        <div className="p-2">
-          <h1 className="text-3xl text-foreground">👨‍🦰 Usuarios</h1>
-        </div>
+        <PageHeader
+          className="p-2 pb-0"
+          title="👨🏻‍🦰 Usuarios"
+          subtitle="Listado de usuarios"
+        />
 
         <TopContent totalItems={50} take={12} />
-        <div className="w-full overflow-auto">
+        <div className="w-full overflow-auto p-2">
           <UsersTable />
         </div>
 

@@ -26,7 +26,7 @@ export const columns = [
     { name: "NAME", uid: "name" },
     { name: "ROLE", uid: "role" },
     { name: "STATUS", uid: "status" },
-    { name: "ACTIONS", uid: "actions" },
+    { name: "ACCIONES", uid: "actions" },
 ];
 
 export const users = [
@@ -185,7 +185,7 @@ export const UsersTable = () => {
             removeWrapper
             selectionMode="single"
             classNames={{
-                th: ["bg-default-100", "text-default-foreground"],
+                th: ["bg-foreground-800", "text-foreground", "font-bold"],
             }}
         >
             <TableHeader columns={columns}>

@@ -42,6 +42,11 @@ export const PaginationUI = ({ className, totalPages }: Props) => {
             initialPage={currentPage}
             total={totalPages}
             onChange={(page) => changePage(page)}
+            classNames={{
+                item:['bg-foreground-800', 'text-foreground'],
+                next:['bg-foreground-700', 'text-foreground'],
+                prev:['bg-foreground-700', 'text-foreground'],
+            }}
         />
     )
 }

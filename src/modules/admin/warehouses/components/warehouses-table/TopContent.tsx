@@ -5,9 +5,9 @@ import React from 'react'
 import { AddModal } from '../add-moodal/AddModal';
 
 const statusOptions = [
-    { name: "Active", uid: "active" },
-    { name: "Paused", uid: "paused" },
-    { name: "Vacation", uid: "vacation" },
+    { name: "Activo", uid: "active" },
+    { name: "Inactivo", uid: "inactive" },
+    // { name: "Vacation", uid: "vacation" },
 ];
 
 interface Props {
@@ -25,11 +25,11 @@ export const TopContent = ({ totalItems,take }: Props) => {
                     isClearable
                     classNames={{
                         base: "w-full sm:max-w-[44%]",
-                        inputWrapper: "border-2 border-foreground-600 text-default-foreground bg-transparent",
+                        inputWrapper: "border-2 border-foreground-300 text-default-foreground bg-transparent",
                     }}
                     placeholder="Buscar..."
                     size="sm"
-                    startContent={<Search01Icon className="text-foreground-400" />}
+                    startContent={<Search01Icon className="text-foreground" />}
                 // value={filterValue}
                 // variant="bordered"
                 // onClear={() => setFilterValue("")}
@@ -44,7 +44,7 @@ export const TopContent = ({ totalItems,take }: Props) => {
                                 variant="flat"
                                 color="default"
                             >
-                                Status
+                                Estado
                             </Button>
                         </DropdownTrigger>
                         <DropdownMenu
@@ -62,13 +62,13 @@ export const TopContent = ({ totalItems,take }: Props) => {
                             ))}
                         </DropdownMenu>
                     </Dropdown>
-                    <AddModal textButton="Agregar usuario" sizeButton="sm" />
+                    <AddModal textButton="Agregar almacén" size="sm" />
                 </div>
             </div>
             <div className="flex justify-between items-center">
-                <span className="text-default-400 text-small">Total {totalItems} users</span>
+                <span className="text-default-400 text-small">Total {totalItems} sucursales</span>
                 <label className="flex items-center text-default-400 text-small">
-                    Rows per page:
+                    Filas por página:
                     <select
                         className="bg-transparent outline-solid outline-transparent text-default-400 text-small"
                         // onChange={onRowsPerPageChange}

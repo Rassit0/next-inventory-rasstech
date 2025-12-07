@@ -15,9 +15,8 @@ import {
     Chip,
     Tooltip,
 } from "@heroui/react";
-import { Delete02Icon, Edit02Icon, EyeIcon, ViewIcon } from "hugeicons-react";
-import { EditModal } from "@/modules/admin/branches";
-import { span } from "framer-motion/client";
+import { Delete02Icon, ViewIcon } from "hugeicons-react";
+import { EditModal } from "@/modules/admin/warehouses";
 
 export type IconSvgProps = SVGProps<SVGSVGElement> & {
     size?: number;
@@ -25,32 +24,36 @@ export type IconSvgProps = SVGProps<SVGSVGElement> & {
 
 export const columns = [
     { name: "ID", uid: "id" },
-    { name: "SUCURSAL", uid: "name" },
+    { name: "ALMACÉN", uid: "name" },
     { name: "DIRECCIÓN", uid: "address" },
+    { name: "SUCURSAL", uid: "branch" },
     { name: "FECHA DE REGISTRO", uid: "created_at" },
     { name: "ESTADO", uid: "status" },
-    { name: "ACCIONES", uid: "actions" },
+    { name: "ACTIONS", uid: "actions" },
 ];
 
 export const branches = [
     {
         id: 1,
-        name: "Sucursal 1",
+        name: "Almacén 1",
         address: "Dirección 1",
+        branch: 'Sucursal 1',
         created_at: "2022-01-01",
         status: "active",
     },
     {
         id: 2,
-        name: "Sucursal 2",
+        name: "Almacén 2",
         address: "Dirección 2",
+        branch: 'Sucursal 2',
         created_at: "2022-01-01",
         status: "active",
     },
     {
         id: 3,
-        name: "Sucursal 3",
+        name: "Almacén 3",
         address: "Dirección 3",
+        branch: 'Sucursal 3',
         created_at: "2022-01-01",
         status: "active",
     },
@@ -62,11 +65,11 @@ const statusColorMap: Record<string, ChipProps["color"]> = {
     vacation: "warning",
 };
 
-type User = (typeof branches)[0];
+type Warehouse = (typeof branches)[0];
 
-export const BranchesTable = () => {
-    const renderCell = useCallback((user: User, columnKey: React.Key) => {
-        const cellValue = user[columnKey as keyof User];
+export const WarehousesTable = () => {
+    const renderCell = useCallback((user: Warehouse, columnKey: React.Key) => {
+        const cellValue = user[columnKey as keyof Warehouse];
 
         switch (columnKey) {
             case "id":
@@ -78,6 +81,10 @@ export const BranchesTable = () => {
                     <span>{cellValue}</span>
                 );
             case "address":
+                return (
+                    <span>{cellValue}</span>
+                );
+            case "branch":
                 return (
                     <span>{cellValue}</span>
                 );
@@ -99,7 +106,7 @@ export const BranchesTable = () => {
                                 <ViewIcon />
                             </span>
                         </Tooltip>
-                            <EditModal />
+                        <EditModal />
                         <Tooltip color="danger" content="Eliminar usuario">
                             <span className="text-lg text-danger cursor-pointer active:opacity-50">
                                 <Delete02Icon />

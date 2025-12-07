@@ -7,7 +7,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
 
     return (
-        <div className={`${appFont.className} antialiased text-foreground bg-background w-screen h-screen`}>
+        <div className={`bg-background w-screen h-screen`}>
 
             <div className="flex h-full">
 

@@ -1,25 +1,33 @@
-import { appFont } from '@/config/fonts/fonts';
+'use client'
 import { Providers } from '@/shared/providers';
-import { Button, Checkbox, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalProps, useDisclosure } from '@heroui/react'
+import { Button, Checkbox, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalProps, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, useDisclosure } from '@heroui/react'
 import { Add01Icon } from 'hugeicons-react';
-import React from 'react'
 
-export const AddModal = () => {
+
+interface Props {
+    textButton?: string;
+    sizeButton?: "sm" | "md" | "lg"
+}
+
+export const AddModal = ({ textButton, sizeButton }: Props) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     return (
         <>
             <Button
                 onPress={onOpen}
-                radius="full"
-                variant="solid"
                 color="primary"
+                variant={textButton ? "flat" : "light"}
                 endContent={<Add01Icon />}
+                isIconOnly={textButton ? false : true}
+                size={sizeButton}
             >
-                Agregar Rol
+                {textButton}
             </Button>
 
-            <Modal isOpen={isOpen} scrollBehavior='inside' size='xl' onClose={onClose}>
+            <Modal isOpen={isOpen} scrollBehavior='inside' size='xl' onClose={onClose}
+                className='bg-foreground-900'
+            >
                 <Providers>
                     <ModalContent>
                         {(onClose) => (
@@ -27,130 +35,134 @@ export const AddModal = () => {
                                 <ModalHeader className="flex flex-col gap-1">Editar Rol: id</ModalHeader>
                                 <ModalBody>
                                     <Input label="Rol" placeholder="Ingrese el nombre del rol" type="text" variant="bordered" />
-                                    <table className="min-w-full border-collapse">
-                                        <thead className="bg-foreground-200 text-left text-sm font-medium text-foreground-900">
-                                            <tr className="h-12">
-                                                <th className="px-4 py-2 rounded-tl-lg">Módulo</th>
-                                                <th className="px-4 py-2 rounded-tr-lg">Permisos</th>
-                                            </tr>
-                                        </thead>
+                                    <Table
+                                        removeWrapper
+                                        classNames={{
+                                            th: ["bg-foreground-800", "text-foreground", "font-bold", "border-b-2 border-transparent"],
+                                            tr: ['border-b-2', 'border-foreground-600']
+                                        }}
+                                    >
+                                        <TableHeader>
+                                            <TableColumn>Módulo</TableColumn>
+                                            <TableColumn>Permisos</TableColumn>
+                                        </TableHeader>
 
-                                        <tbody className="text-sm text-foreground-700">
-                                            <tr className="border-b border-foreground-200 hover:bg-foreground-100 transition-colors">
-                                                <td className="px-4 py-3">Dashboard</td>
-                                                <td className="px-4 py-3 flex flex-wrap gap-2">
-                                                    <Checkbox color='secondary'>Gráficos</Checkbox>
-                                                </td>
-                                            </tr>
+                                        <TableBody>
+                                            <TableRow>
+                                                <TableCell>Dashboard</TableCell>
+                                                <TableCell className='flex flex-col gap-2'>
+                                                    <Checkbox>Gráficos</Checkbox>
+                                                </TableCell>
+                                            </TableRow>
 
-                                            <tr className="border-b border-foreground-200 hover:bg-foreground-100 transition-colors">
-                                                <td className="px-4 py-3">Roles</td>
-                                                <td className="px-4 py-3 flex flex-col gap-2">
+                                            <TableRow>
+                                                <TableCell>Roles</TableCell>
+                                                <TableCell className='flex flex-col gap-2'>
                                                     <Checkbox>Registrar</Checkbox>
                                                     <Checkbox>Listado</Checkbox>
                                                     <Checkbox>Editar</Checkbox>
                                                     <Checkbox>Eliminar</Checkbox>
-                                                </td>
-                                            </tr>
+                                                </TableCell>
+                                            </TableRow>
 
-                                            <tr className="border-b border-foreground-200 hover:bg-foreground-100 transition-colors">
-                                                <td className="px-4 py-3">Usuarios</td>
-                                                <td className="px-4 py-3 flex flex-col gap-2">
+                                            <TableRow>
+                                                <TableCell>Usuarios</TableCell>
+                                                <TableCell className='flex flex-col gap-2'>
                                                     <Checkbox>Registrar</Checkbox>
                                                     <Checkbox>Listado</Checkbox>
                                                     <Checkbox>Editar</Checkbox>
                                                     <Checkbox>Eliminar</Checkbox>
-                                                </td>
-                                            </tr>
+                                                </TableCell>
+                                            </TableRow>
 
-                                            <tr className="border-b border-foreground-200 hover:bg-foreground-100 transition-colors">
-                                                <td className="px-4 py-3">Configuraciones</td>
-                                                <td className="px-4 py-3 flex flex-col gap-2">
+                                            <TableRow>
+                                                <TableCell>Configuraciones</TableCell>
+                                                <TableCell className='flex flex-col gap-2'>
                                                     <Checkbox>Disponible</Checkbox>
-                                                </td>
-                                            </tr>
+                                                </TableCell>
+                                            </TableRow>
 
-                                            <tr className="border-b border-foreground-200 hover:bg-foreground-100 transition-colors">
-                                                <td className="px-4 py-3">Productos</td>
-                                                <td className="px-4 py-3 flex flex-col gap-2">
+                                            <TableRow>
+                                                <TableCell>Productos</TableCell>
+                                                <TableCell className='flex flex-col gap-2'>
                                                     <Checkbox>Registrar</Checkbox>
                                                     <Checkbox>Listado</Checkbox>
                                                     <Checkbox>Editar</Checkbox>
                                                     <Checkbox>Eliminar</Checkbox>
                                                     <Checkbox>Ver Existencias</Checkbox>
                                                     <Checkbox>Ver billetera de precios</Checkbox>
-                                                </td>
-                                            </tr>
+                                                </TableCell>
+                                            </TableRow>
 
-                                            <tr className="border-b border-foreground-200 hover:bg-foreground-100 transition-colors">
-                                                <td className="px-4 py-3">Clientes</td>
-                                                <td className="px-4 py-3 flex flex-col gap-2">
+                                            <TableRow>
+                                                <TableCell>Clientes</TableCell>
+                                                <TableCell className='flex flex-col gap-2'>
                                                     <Checkbox>Registrar</Checkbox>
                                                     <Checkbox>Listado</Checkbox>
                                                     <Checkbox>Editar</Checkbox>
                                                     <Checkbox>Eliminar</Checkbox>
-                                                </td>
-                                            </tr>
+                                                </TableCell>
+                                            </TableRow>
 
-                                            <tr className="border-b border-foreground-200 hover:bg-foreground-100 transition-colors">
-                                                <td className="px-4 py-3">Venta</td>
-                                                <td className="px-4 py-3 flex flex-col gap-2">
-                                                    <Checkbox>Registrar</Checkbox>
-                                                    <Checkbox>Listado</Checkbox>
-                                                    <Checkbox>Editar</Checkbox>
-                                                    <Checkbox>Eliminar</Checkbox>
-                                                    <Checkbox>Ver Existencias</Checkbox>
-                                                    <Checkbox>Ver billetera de precios</Checkbox>
-                                                </td>
-                                            </tr>
-
-                                            <tr className="border-b border-foreground-200 hover:bg-foreground-100 transition-colors">
-                                                <td className="px-4 py-3">Devolución</td>
-                                                <td className="px-4 py-3 flex flex-col gap-2">
-                                                    <Checkbox>Disponible</Checkbox>
-                                                </td>
-                                            </tr>
-
-                                            <tr className="border-b border-foreground-200 hover:bg-foreground-100 transition-colors">
-                                                <td className="px-4 py-3">Compras</td>
-                                                <td className="px-4 py-3 flex flex-col gap-2">
+                                            <TableRow>
+                                                <TableCell>Venta</TableCell>
+                                                <TableCell className='flex flex-col gap-2'>
                                                     <Checkbox>Registrar</Checkbox>
                                                     <Checkbox>Listado</Checkbox>
                                                     <Checkbox>Editar</Checkbox>
                                                     <Checkbox>Eliminar</Checkbox>
                                                     <Checkbox>Ver Existencias</Checkbox>
                                                     <Checkbox>Ver billetera de precios</Checkbox>
-                                                </td>
-                                            </tr>
+                                                </TableCell>
+                                            </TableRow>
 
-                                            <tr className="border-b border-foreground-200 hover:bg-foreground-100 transition-colors">
-                                                <td className="px-4 py-3">Transporte</td>
-                                                <td className="px-4 py-3 flex flex-col gap-2">
+                                            <TableRow>
+                                                <TableCell>Devolución</TableCell>
+                                                <TableCell className='flex flex-col gap-2'>
+                                                    <Checkbox>Disponible</Checkbox>
+                                                </TableCell>
+                                            </TableRow>
+
+                                            <TableRow>
+                                                <TableCell>Compras</TableCell>
+                                                <TableCell className='flex flex-col gap-2'>
                                                     <Checkbox>Registrar</Checkbox>
                                                     <Checkbox>Listado</Checkbox>
                                                     <Checkbox>Editar</Checkbox>
                                                     <Checkbox>Eliminar</Checkbox>
                                                     <Checkbox>Ver Existencias</Checkbox>
                                                     <Checkbox>Ver billetera de precios</Checkbox>
-                                                </td>
-                                            </tr>
+                                                </TableCell>
+                                            </TableRow>
 
-                                            <tr className="border-b border-foreground-200 hover:bg-foreground-100 transition-colors">
-                                                <td className="px-4 py-3">Conversiones</td>
-                                                <td className="px-4 py-3 flex flex-col gap-2">
+                                            <TableRow>
+                                                <TableCell>Transporte</TableCell>
+                                                <TableCell className='flex flex-col gap-2'>
+                                                    <Checkbox>Registrar</Checkbox>
+                                                    <Checkbox>Listado</Checkbox>
+                                                    <Checkbox>Editar</Checkbox>
+                                                    <Checkbox>Eliminar</Checkbox>
+                                                    <Checkbox>Ver Existencias</Checkbox>
+                                                    <Checkbox>Ver billetera de precios</Checkbox>
+                                                </TableCell>
+                                            </TableRow>
+
+                                            <TableRow>
+                                                <TableCell>Conversiones</TableCell>
+                                                <TableCell className='flex flex-col gap-2'>
                                                     <Checkbox>Disponible</Checkbox>
-                                                </td>
-                                            </tr>
+                                                </TableCell>
+                                            </TableRow>
 
-                                            <tr className="border-b border-foreground-200 hover:bg-foreground-100 transition-colors">
-                                                <td className="px-4 py-3">Kardex</td>
-                                                <td className="px-4 py-3 flex flex-col gap-2">
+                                            <TableRow>
+                                                <TableCell>Kardex</TableCell>
+                                                <TableCell className='flex flex-col gap-2'>
                                                     <Checkbox>Disponible</Checkbox>
-                                                </td>
-                                            </tr>
+                                                </TableCell>
+                                            </TableRow>
 
-                                        </tbody>
-                                    </table>
+                                        </TableBody>
+                                    </Table>
 
                                 </ModalBody>
                                 <ModalFooter>
@@ -165,7 +177,7 @@ export const AddModal = () => {
                         )}
                     </ModalContent>
                 </Providers>
-            </Modal>
+            </Modal >
         </>
     )
 }

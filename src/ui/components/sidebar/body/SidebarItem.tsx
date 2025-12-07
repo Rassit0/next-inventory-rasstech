@@ -148,7 +148,7 @@ export const SidebarItem = ({ item, isSidebarOpen, hoverSidebar, updateHeightChi
                     ${isSidebarOpen || hoverSidebar ? 'rounded-r-lg' : 'rounded-r-none'} 
                     ${activeItem && !isSubMenu
                         ? 'bg-linear-to-l from-primary-600 to-primary-400 text-primary-foreground'
-                        : openSubMenu || activeItem ? 'bg-default-200 text-default-foreground'
+                        : openSubMenu || activeItem ? 'bg-foreground-800 text-foreground'
                             : 'hover:bg-default-200'}`}
             >
                 {item.icon ?

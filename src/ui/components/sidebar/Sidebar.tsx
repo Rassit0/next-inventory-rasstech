@@ -7,6 +7,7 @@ import { SidebarBody } from './body/SidebarBody';
 import { SidebarFooter } from './footer/SidebarFooter';
 import clsx from 'clsx';
 import { useUIStore } from '@/ui';
+import { appFont, titleFont } from '@/config/fonts/fonts';
 
 
 export const Sidebar = () => {

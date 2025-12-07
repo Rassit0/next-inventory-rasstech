@@ -8,10 +8,10 @@ import { useState } from "react";
 
 interface Props {
     textButton?: string;
-    size?: "sm" | "md" | "lg"
+    sizeButton?: "sm" | "md" | "lg"
 }
 
-export const AddModal = ({ textButton, size }: Props) => {
+export const AddModal = ({ textButton, sizeButton }: Props) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     const [name, setName] = useState('');
@@ -33,12 +33,14 @@ export const AddModal = ({ textButton, size }: Props) => {
                 variant={textButton ? "flat" : "light"}
                 endContent={<Add01Icon />}
                 isIconOnly={textButton ? false : true}
-                size={size}
+                size={sizeButton}
             >
                 {textButton}
             </Button>
 
-            <Modal isOpen={isOpen} scrollBehavior='inside' size='xl' onClose={onClose}>
+            <Modal isOpen={isOpen} scrollBehavior='inside' size='xl' onClose={onClose}
+                className='bg-foreground-900'
+            >
                 <Providers>
                     <ModalContent>
                         {(onClose) => (

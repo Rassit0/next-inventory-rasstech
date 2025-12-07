@@ -13,7 +13,7 @@ export const EditModal = () => {
 
     return (
         <>
-            <Tooltip color="warning" content="Editar sucursal">
+            <Tooltip color="warning" content="Editar categoría">
                 <Button
                     onPress={onOpen}
                     radius="full"

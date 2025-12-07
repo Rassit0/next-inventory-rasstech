@@ -13,7 +13,7 @@ export const EditModal = () => {
 
     return (
         <>
-            <Tooltip color="warning" content="Editar sucursal">
+            <Tooltip color="warning" content="Editar almacén">
                 <Button
                     onPress={onOpen}
                     radius="full"
@@ -32,7 +32,7 @@ export const EditModal = () => {
                     <ModalContent>
                         {(onClose) => (
                             <>
-                                <ModalHeader className="flex flex-col gap-1">Editar Sucursal: id</ModalHeader>
+                                <ModalHeader className="flex flex-col gap-1">Editar Almacén: id</ModalHeader>
                                 <ModalBody>
                                     <div className="grid grid-cols-1 gap-y-4">
                                         <Input radius="lg" label="Nombre" placeholder="Ingrese el nombre de la sucursal" type="text" variant="bordered" value={name} onValueChange={setName} />

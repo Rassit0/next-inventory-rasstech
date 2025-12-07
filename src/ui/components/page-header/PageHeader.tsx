@@ -9,10 +9,10 @@ interface Props {
 export const PageHeader = ({ title, subtitle, className }: Props) => {
     return (
         <div className={`space-y-2 ${className}`}>
-            <h1 className={`text-3xl font-semibold`}>{title}</h1>
+            <h1 className={`${titleFont.className} text-3xl font-semibold`}>{title}</h1>
             {
                 subtitle && (
-                    <h3 className="text-lg mb-5">{subtitle}</h3>
+                    <h3 className="text-lg ml-3 text-foreground-400">{subtitle}</h3>
                 )
             }
         </div>

@@ -1,11 +1,16 @@
 'use client'
+
 import { Providers } from "@/shared/providers";
-import { Button, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Textarea, Tooltip, useDisclosure } from "@heroui/react";
-import { Edit02Icon } from "hugeicons-react";
+import { Button, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Textarea, useDisclosure } from "@heroui/react";
+import { Add01Icon } from "hugeicons-react";
 import { useState } from "react";
 
+interface Props {
+    textButton?: string;
+    size?: "sm" | "md" | "lg"
+}
 
-export const EditModal = () => {
+export const AddModal = ({ textButton, size }: Props) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     const [name, setName] = useState('');
@@ -13,17 +18,16 @@ export const EditModal = () => {
 
     return (
         <>
-            <Tooltip color="warning" content="Editar sucursal">
-                <Button
-                    onPress={onOpen}
-                    radius="full"
-                    variant="light"
-                    color="warning"
-                    isIconOnly
-                >
-                    <Edit02Icon />
-                </Button>
-            </Tooltip>
+            <Button
+                onPress={onOpen}
+                color="primary"
+                variant={textButton ? "flat" : "light"}
+                endContent={<Add01Icon />}
+                isIconOnly={textButton ? false : true}
+                size={size}
+            >
+                {textButton}
+            </Button>
 
             <Modal isOpen={isOpen} scrollBehavior='inside' size='xl' onClose={onClose}
                 className='bg-foreground-900'
@@ -32,7 +36,7 @@ export const EditModal = () => {
                     <ModalContent>
                         {(onClose) => (
                             <>
-                                <ModalHeader className="flex flex-col gap-1">Editar Sucursal: id</ModalHeader>
+                                <ModalHeader className="flex flex-col gap-1">Agregar Categoría</ModalHeader>
                                 <ModalBody>
                                     <div className="grid grid-cols-1 gap-y-4">
                                         <Input radius="lg" label="Nombre" placeholder="Ingrese el nombre de la sucursal" type="text" variant="bordered" value={name} onValueChange={setName} />

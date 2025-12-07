@@ -1,7 +1,7 @@
 'use client'
 
 import { Providers } from "@/shared/providers";
-import { Button, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Textarea, useDisclosure } from "@heroui/react";
+import { Button, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Select, Selection, SelectItem, Textarea, useDisclosure } from "@heroui/react";
 import { Add01Icon } from "hugeicons-react";
 import { useState } from "react";
 
@@ -10,11 +10,14 @@ interface Props {
     size?: "sm" | "md" | "lg"
 }
 
+
+
 export const AddModal = ({ textButton, size }: Props) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     const [name, setName] = useState('');
     const [address, setAddress] = useState('');
+    const [branch, setBranch] = useState<Selection>(new Set([]));
 
     return (
         <>
@@ -36,10 +39,28 @@ export const AddModal = ({ textButton, size }: Props) => {
                     <ModalContent>
                         {(onClose) => (
                             <>
-                                <ModalHeader className="flex flex-col gap-1">Agregar Sucursal</ModalHeader>
+                                <ModalHeader className="flex flex-col gap-1">Agregar Almacén</ModalHeader>
                                 <ModalBody>
                                     <div className="grid grid-cols-1 gap-y-4">
                                         <Input radius="lg" label="Nombre" placeholder="Ingrese el nombre de la sucursal" type="text" variant="bordered" value={name} onValueChange={setName} />
+                                        <Select
+                                            radius="lg"
+                                            label="Sucursal"
+                                            placeholder="Seleccione una sucursal"
+                                            variant="bordered"
+                                            selectedKeys={branch}
+                                            onSelectionChange={setBranch}
+                                        >
+                                            <SelectItem >
+                                                Sucursal 1
+                                            </SelectItem>
+                                            <SelectItem >
+                                                Sucursal 2
+                                            </SelectItem>
+                                            <SelectItem >
+                                                Sucursal 3
+                                            </SelectItem>
+                                        </Select>
                                         <Textarea radius="lg" label="Dirección" placeholder="Ingrese la dirección de la sucursal" type="text" variant="bordered" value={address} onValueChange={setAddress} />
                                     </div>
 

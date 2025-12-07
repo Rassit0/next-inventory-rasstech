@@ -2,7 +2,7 @@
 import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Input, Selection } from '@heroui/react'
 import { Add01Icon, ArrowDown01Icon, Search01Icon } from 'hugeicons-react'
 import React from 'react'
-import { AddModal } from '../add-moodal/AddModal';
+import { AddModal } from '@/modules/admin/roles-permissions';
 
 const statusOptions = [
     { name: "Active", uid: "active" },
@@ -62,10 +62,10 @@ export const TopContent = ({ totalItems,take }: Props) => {
                             ))}
                         </DropdownMenu>
                     </Dropdown>
-                    <AddModal textButton="Agregar usuario" sizeButton="sm" />
+                    <AddModal textButton="Agregar rol" sizeButton="sm" />
                 </div>
             </div>
-            <div className="flex justify-between items-center">
+            {/* <div className="flex justify-between items-center">
                 <span className="text-default-400 text-small">Total {totalItems} users</span>
                 <label className="flex items-center text-default-400 text-small">
                     Rows per page:
@@ -78,7 +78,7 @@ export const TopContent = ({ totalItems,take }: Props) => {
                         <option value="15">15</option>
                     </select>
                 </label>
-            </div>
+            </div> */}
         </div>
     )
 }

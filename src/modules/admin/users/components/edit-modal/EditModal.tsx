@@ -21,7 +21,7 @@ export const EditModal = () => {
 
     return (
         <>
-            <Tooltip content="Editar usuario">
+            <Tooltip color="warning" content="Editar usuario">
                 <Button
                     onPress={onOpen}
                     radius="full"
@@ -33,12 +33,14 @@ export const EditModal = () => {
                 </Button>
             </Tooltip>
 
-            <Modal isOpen={isOpen} scrollBehavior='inside' size='xl' onClose={onClose}>
+            <Modal isOpen={isOpen} scrollBehavior='inside' size='xl' onClose={onClose}
+                className='bg-foreground-900'
+            >
                 <Providers>
                     <ModalContent>
                         {(onClose) => (
                             <>
-                                <ModalHeader className="flex flex-col gap-1">Editar Rol: id</ModalHeader>
+                                <ModalHeader className="flex flex-col gap-1">Editar Usuario: id</ModalHeader>
                                 <ModalBody>
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 gap-y-4">
                                         <Input radius="lg" label="Nombre" placeholder="Ingrese el nombre del rol" type="text" variant="bordered" value={name} onValueChange={setName} />

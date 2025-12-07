@@ -8,15 +8,15 @@ import { EditModal } from '../edit-modal/EditModal'
 
 export const CardItem = () => {
     return (
-        <Card className="min-w-fit max-h-[140px]">
+        <Card className="min-w-fit max-h-[140px] bg-foreground-900">
             <CardHeader className="flex justify-between items-center">
-                <span className='text-foreground-500'>Total 4 usuarios</span>
+                <span className='text-foreground'>Total 4 usuarios</span>
                 <GroupUsers />
             </CardHeader>
             <CardBody className='flex flex-row justify-between items-center min-w-fit min-h-fit'>
                 <div>
-                    <span className='font-bold text-lg'>Administrator</span>
-                    <p className="text-sm text-foreground-500">
+                    <span className='font-bold text-lg text-foreground'>Administrator</span>
+                    <p className="text-sm text-foreground-400">
                         Acceso total al sistema
                     </p>
                 </div>

@@ -1,19 +1,19 @@
-import { BranchesTable, TopContent } from "@/modules/admin/branches";
+import { CategoriesTable, TopContent } from "@/modules/admin/categories";
 import { PageHeader, PaginationUI } from "@/ui";
 import { Suspense } from "react";
 
-export default function BranchesPage() {
+export default function CategoriesPage() {
   return (
     <div className="w-full max-w-full card-shadow space-y-2 py-4">
       <PageHeader
         className="p-2 pb-0"
-        title="🏪 Sucursales"
-        subtitle="Listado de sucursales"
+        title="🏷️ Categorías"
+        subtitle="Listado de categorías"
       />
 
       <TopContent totalItems={50} take={12} />
       <div className="w-full overflow-auto p-2">
-        <BranchesTable />
+        <CategoriesTable />
       </div>
 
       <Suspense fallback={<div>Loading...</div>}>

@@ -25,8 +25,8 @@ export type IconSvgProps = SVGProps<SVGSVGElement> & {
 
 export const columns = [
     { name: "ID", uid: "id" },
-    { name: "SUCURSAL", uid: "name" },
-    { name: "DIRECCIÓN", uid: "address" },
+    { name: "CATEGORÍA", uid: "name" },
+    { name: "PADRE", uid: "pattern" },
     { name: "FECHA DE REGISTRO", uid: "created_at" },
     { name: "ESTADO", uid: "status" },
     { name: "ACCIONES", uid: "actions" },
@@ -35,22 +35,22 @@ export const columns = [
 export const branches = [
     {
         id: 1,
-        name: "Sucursal 1",
-        address: "Dirección 1",
+        name: "Categoría 1",
+        pattern: "Pattern 1",
         created_at: "2022-01-01",
         status: "active",
     },
     {
         id: 2,
-        name: "Sucursal 2",
-        address: "Dirección 2",
+        name: "Categoría 2",
+        pattern: "Pattern 2",
         created_at: "2022-01-01",
         status: "active",
     },
     {
         id: 3,
-        name: "Sucursal 3",
-        address: "Dirección 3",
+        name: "Categoría 3",
+        pattern: "Pattern 3",
         created_at: "2022-01-01",
         status: "active",
     },
@@ -64,7 +64,7 @@ const statusColorMap: Record<string, ChipProps["color"]> = {
 
 type User = (typeof branches)[0];
 
-export const BranchesTable = () => {
+export const CategoriesTable = () => {
     const renderCell = useCallback((user: User, columnKey: React.Key) => {
         const cellValue = user[columnKey as keyof User];
 
@@ -77,7 +77,7 @@ export const BranchesTable = () => {
                 return (
                     <span>{cellValue}</span>
                 );
-            case "address":
+            case "pattern":
                 return (
                     <span>{cellValue}</span>
                 );

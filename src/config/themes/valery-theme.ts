@@ -30,10 +30,22 @@ export const valeryLight: ConfigTheme = {
     },
     colors: {
         background: '#f8f8f8f4',
-        foreground: '#1a1a1a',
+        foreground: {
+            DEFAULT: '#242b46',  // texto principal (oscuro)
+            '50': '#1d1f2f',    // el más oscuro, perfecto para títulos
+            '100': '#2c324e',
+            '200': '#3b4360',
+            '300': '#545d7a',
+            '400': '#6f798f',
+            '500': '#8c95a4',
+            '600': '#a9afbb',
+            '700': '#c6c9d3',
+            '800': '#e2e4eb',
+            '900': '#f5f6fa',    // muy claro
+        },
         default: {
             DEFAULT: '#e4e4e7',
-            foreground: '#1f2937',
+            foreground: '#1f2937', // ✔ correcto (oscuro)
             '50': '#fcfcfd',
             '100': '#f9f9fa',
             '200': '#f0f0f2',
@@ -46,7 +58,7 @@ export const valeryLight: ConfigTheme = {
             '900': '#27272a',
         },
         primary: {
-            foreground: '#f8fafc',
+            foreground: '#f8fafc', // ✔ perfecto
             DEFAULT: '#035AA6',
             '50': '#f0f7ff',
             '100': '#e0effe',
@@ -60,7 +72,7 @@ export const valeryLight: ConfigTheme = {
             '900': '#082849',
         },
         secondary: {
-            foreground: '#0f172a',
+            foreground: '#1f2937', // ✔ mejor contraste que antes
             DEFAULT: '#F49401',
             '50': '#fffbea',
             '100': '#fff3c5',
@@ -74,7 +86,7 @@ export const valeryLight: ConfigTheme = {
             '900': '#481700',
         },
         success: {
-            foreground: '#f8fafc',
+            foreground: '#f8fafc', // ✔ ideal
             DEFAULT: '#17c964',
             '50': '#f0fdf4',
             '100': '#dcfce7',
@@ -88,7 +100,7 @@ export const valeryLight: ConfigTheme = {
             '900': '#14532d',
         },
         warning: {
-            foreground: '#0f172a',
+            foreground: '#1f2937', // ✔ mejor que #0f172a (muy negro)
             DEFAULT: '#f5a524',
             '50': '#fffbeb',
             '100': '#fef3c7',
@@ -102,7 +114,7 @@ export const valeryLight: ConfigTheme = {
             '900': '#78350f',
         },
         danger: {
-            foreground: '#f8fafc',
+            foreground: '#f8fafc', // ✔ correcto
             DEFAULT: '#f31260',
             '50': '#fff1f2',
             '100': '#ffe4e6',
@@ -149,101 +161,101 @@ export const valeryDark: ConfigTheme = {
     colors: {
         background: '#1d1f2f04',
         foreground: {
-            DEFAULT: '#ecedee',
-            '50': '#f7f8f8',
-            '100': '#ecedee',
-            '200': '#dadcdd',
-            '300': '#b9bdc0',
-            '400': '#92999e',
-            '500': '#757d82',
-            '600': '#5f656a',
-            '700': '#4d5257',
-            '800': '#42464a',
-            '900': '#3a3d40',
+            DEFAULT: '#f5f6fa',  // color principal claro y limpio
+            '50': '#ffffff',     // casi blanco para elementos destacados
+            '100': '#f5f6fa',    // ligeros textos o íconos
+            '200': '#e2e4eb',    // texto secundario
+            '300': '#c6c9d3',    // labels, hints
+            '400': '#a9afbb',    // deshabilitado o muted
+            '500': '#8c95a4',    // borde sutil
+            '600': '#6f798f',    // texto más oscuro
+            '700': '#545d7a',    // texto principal en hover o activo
+            '800': '#3b4360',    // títulos secundarios
+            '900': '#242b46',    // títulos o texto importante
         },
         default: {
-            DEFAULT: '#a1a1aa',
-            foreground: '#ffffff',
-            '50': '#27272a',
-            '100': '#3f3f46',
-            '200': '#52525b',
-            '300': '#71717a',
-            '400': '#a1a1aa',
-            '500': '#d4d4d8',
-            '600': '#e4e4e7',
-            '700': '#f4f4f5',
-            '800': '#fafafa',
-            '900': '#ffffff',
+            DEFAULT: "#a1a1aa",
+            foreground: "#0f172a",     // gris medio = texto oscuro
+            "50": "#27272a",           // oscuro → blanco
+            "100": "#3f3f46",          // oscuro → blanco
+            "200": "#52525b",          // oscuro → blanco
+            "300": "#71717a",          // medio → oscuro
+            "400": "#a1a1aa",          // medio/alto → oscuro
+            "500": "#d4d4d8",          // claro → oscuro
+            "600": "#e4e4e7",          // claro → oscuro
+            "700": "#f4f4f5",          // muy claro → oscuro
+            "800": "#fafafa",          // muy claro → oscuro
+            "900": "#ffffff",          // blanco → oscuro
         },
         primary: {
-            foreground: '#f8fafc',
-            DEFAULT: '#38a8f8',
-            '50': '#082849',
-            '100': '#0c3f6e',
-            '200': '#074b85',
-            '300': '#026ec7',
-            '400': '#0e8de9',
-            '500': '#38a8f8',
-            '600': '#7dc5fc',
-            '700': '#badffd',
-            '800': '#e0effe',
-            '900': '#f0f7ff',
+            DEFAULT: "#38a8f8",
+            foreground: "#ffffff",      // color saturado → blanco
+            "50": "#082849",            // oscuro → blanco
+            "100": "#0c3f6e",           // oscuro → blanco
+            "200": "#074b85",           // oscuro → blanco
+            "300": "#026ec7",           // medio oscuro → blanco
+            "400": "#0e8de9",           // medio → blanco
+            "500": "#38a8f8",           // brillante → blanco
+            "600": "#7dc5fc",           // claro → oscuro
+            "700": "#badffd",           // muy claro → oscuro
+            "800": "#e0effe",           // muy claro → oscuro
+            "900": "#f0f7ff",           // muy claro → oscuro
         },
         secondary: {
-            foreground: '#0f172a',
-            DEFAULT: '#ffbe1c',
-            '50': '#481700',
-            '100': '#7c310b',
-            '200': '#973c09',
-            '300': '#bb4e02',
-            '400': '#e17300',
-            '500': '#ffbe1c',
-            '600': '#ffd346',
-            '700': '#ffe686',
-            '800': '#fff3c5',
-            '900': '#fffbea',
+            DEFAULT: "#ffbe1c",
+            foreground: "#0f172a",      // amarillo claro → oscuro
+            "50": "#481700",            // muy oscuro → blanco
+            "100": "#7c310b",           // oscuro → blanco
+            "200": "#973c09",           // oscuro → blanco
+            "300": "#bb4e02",           // medio oscuro → blanco
+            "400": "#e17300",           // medio → blanco
+            "500": "#ffbe1c",           // claro → oscuro
+            "600": "#ffd346",           // claro → oscuro
+            "700": "#ffe686",           // muy claro → oscuro
+            "800": "#fff3c5",           // muy claro → oscuro
+            "900": "#fffbea",           // muy claro → oscuro
         },
         success: {
-            foreground: '#f8fafc',
-            DEFAULT: '#4ade80',
-            '50': '#14532d',
-            '100': '#166534',
-            '200': '#15803d',
-            '300': '#16a34a',
-            '400': '#22c55e',
-            '500': '#4ade80',
-            '600': '#86efac',
-            '700': '#bbf7d0',
-            '800': '#dcfce7',
-            '900': '#f0fdf4',
+            DEFAULT: "#4ade80",
+            foreground: "#0f172a",      // verde claro → oscuro
+            "50": "#14532d",            // oscuro → blanco
+            "100": "#166534",           // oscuro → blanco
+            "200": "#15803d",           // oscuro → blanco
+            "300": "#16a34a",           // medio → blanco
+            "400": "#22c55e",           // medio → blanco
+            "500": "#4ade80",           // claro → oscuro
+            "600": "#86efac",           // claro → oscuro
+            "700": "#bbf7d0",           // muy claro → oscuro
+            "800": "#dcfce7",           // muy claro → oscuro
+            "900": "#f0fdf4",           // muy claro → oscuro
         },
         warning: {
-            foreground: '#0f172a',
-            DEFAULT: '#fbbf24',
-            '50': '#78350f',
-            '100': '#92400e',
-            '200': '#b45309',
-            '300': '#d97706',
-            '400': '#f59e0b',
-            '500': '#fbbf24',
-            '600': '#fcd34d',
-            '700': '#fde68a',
-            '800': '#fef3c7',
-            '900': '#fffbeb',
+            DEFAULT: "#fbbf24",
+            foreground: "#0f172a",      // amarillo claro → oscuro
+            "50": "#78350f",            // oscuro → blanco
+            "100": "#92400e",           // oscuro → blanco
+            "200": "#b45309",           // oscuro → blanco
+            "300": "#d97706",           // medio oscuro → blanco
+            "400": "#f59e0b",           // medio → blanco
+            "500": "#fbbf24",           // claro → oscuro
+            "600": "#fcd34d",           // claro → oscuro
+            "700": "#fde68a",           // muy claro → oscuro
+            "800": "#fef3c7",           // muy claro → oscuro
+            "900": "#fffbeb",           // muy claro → oscuro
         },
         danger: {
-            foreground: '#f8fafc',
-            DEFAULT: '#fb7185',
-            '50': '#881337',
-            '100': '#9f1239',
-            '200': '#be123c',
-            '300': '#e11d48',
-            '400': '#f43f5e',
-            '500': '#fb7185',
-            '600': '#fda4af',
-            '700': '#fecdd3',
-            '800': '#ffe4e6',
-            '900': '#fff1f2',
+            DEFAULT: "#fb7185",
+            foreground: "#ffffff",      // rojo saturado → blanco
+            "50": "#881337",            // muy oscuro → blanco
+            "100": "#9f1239",           // oscuro → blanco
+            "200": "#be123c",           // oscuro → blanco
+            "300": "#e11d48",           // medio oscuro → blanco
+            "400": "#f43f5e",           // medio → blanco
+            "500": "#fb7185",           // saturado → blanco
+            "600": "#fda4af",           // claro → oscuro
+            "700": "#fecdd3",           // muy claro → oscuro
+            "800": "#ffe4e6",           // muy claro → oscuro
+            "900": "#fff1f2",           // muy claro → oscuro
         },
     }
 };
