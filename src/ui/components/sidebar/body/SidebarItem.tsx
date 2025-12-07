@@ -121,10 +121,10 @@ export const SidebarItem = ({ item, isSidebarOpen, hoverSidebar, updateHeightChi
     // Cuando el sidebar está colapsado pero el mouse entra (hoverSidebar = true),
     // reabrimos los submenús que coinciden con la ruta actual
     useEffect(() => {
-        if (!isSidebarOpen && hoverSidebar) {
+        if ( hoverSidebar) {
             restartOpenSubMenu();
         }
-    }, [hoverSidebar, pathname]);
+    }, [hoverSidebar, pathname, isSidebarOpen]);
 
     // Navega a la ruta indicada (para items hoja sin submenú)
     const handleNavigation = (path: string) => {
