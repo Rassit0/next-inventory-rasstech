@@ -1,8 +1,10 @@
 'use client'
 import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Input, Selection } from '@heroui/react'
-import { Add01Icon, ArrowDown01Icon, Search01Icon } from 'hugeicons-react'
-import React from 'react'
+import { ArrowDown01Icon, Search01Icon } from 'hugeicons-react'
 import { AddModal } from '../add-moodal/AddModal';
+import { CategoriesConfigResponse } from "@/modules/admin/categories";
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
 
 const statusOptions = [
     { name: "Activo", uid: "active" },
@@ -12,12 +14,33 @@ const statusOptions = [
 
 interface Props {
     totalItems: number;
-    take: number;
-    
+    take: string;
+    config: CategoriesConfigResponse;
 }
 
-export const TopContent = ({ totalItems,take }: Props) => {
-    
+export const TopContent = ({ totalItems, take, config }: Props) => {
+
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+
+
+    // useEffect(() => {
+    //   changePerPage(take);
+    //   console.log({take})
+    // }, [take])
+
+
+    const changePerPage = (perPage: string) => {
+
+        const params = new URLSearchParams(searchParams);
+        params.set('page', '1');
+
+        // si no es ninguna de las condiciones
+        params.set('per_page', perPage);
+        router.push(`${pathname}?${params.toString()}`);
+    }
+
     return (
         <div className="flex flex-col gap-4 p-4">
             <div className="flex justify-between gap-3 items-end">
@@ -62,7 +85,7 @@ export const TopContent = ({ totalItems,take }: Props) => {
                             ))}
                         </DropdownMenu>
                     </Dropdown>
-                    <AddModal textButton="Agregar categoría" size="sm" />
+                    <AddModal textButton="Agregar categoría" size="sm" config={config} />
                 </div>
             </div>
             <div className="flex justify-between items-center">
@@ -71,7 +94,9 @@ export const TopContent = ({ totalItems,take }: Props) => {
                     Filas por página:
                     <select
                         className="bg-transparent outline-solid outline-transparent text-default-400 text-small"
-                        // onChange={onRowsPerPageChange}
+                        onChange={(e) => changePerPage(e.target.value)}
+                        value={take}
+                        // defaultValue={take}
                     >
                         <option value="5">5</option>
                         <option value="10">10</option>

@@ -1,36 +1,45 @@
-'use client'
-import { useUIStore } from "@/ui";
-import { HeroUIProvider } from "@heroui/react";
-import { useState, useEffect, useRef } from 'react';
+"use client";
 
-interface Props {
-    modeTheme?: 'light' | 'dark';
-    children: React.ReactNode;
+import type { ThemeProviderProps } from "next-themes";
+
+import * as React from "react";
+import { HeroUIProvider } from "@heroui/system";
+import { useRouter } from "next/navigation";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { ToastProvider } from "@heroui/react";
+import { SessionProvider } from "next-auth/react";
+
+export interface ProvidersProps {
+  children: React.ReactNode;
+  themeProps?: ThemeProviderProps;
 }
 
-export const Providers = ({ modeTheme, children }: Props) => {
+declare module "@react-types/shared" {
+  interface RouterConfig {
+    routerOptions: NonNullable<
+      Parameters<ReturnType<typeof useRouter>["push"]>[1]
+    >;
+  }
+}
 
-    const { modeTheme: theme, setModeTheme } = useUIStore(state => state);
-    const [themeUI, setThemeUI] = useState<'light' | 'dark'>(modeTheme || theme);
+export function Providers({ children, themeProps }: ProvidersProps) {
+  const router = useRouter();
 
-    const firstRender = useRef(true);
+  return (
+    <HeroUIProvider navigate={router.push}>
+      <ToastProvider placement="top-right" />
+      <NextThemesProvider
+        value={{
+          dark: 'valery-dark',
+          light: 'valery-light'
+        }}
+        {...themeProps}
+      >
 
-    useEffect(() => {
-        // En el primer render no cambia el tema que llega que es de cookies para evitar el parpadeo al cambiar de tema
-        if (firstRender.current) {
-            setModeTheme(modeTheme || theme);
-            // ignoramos la primera ejecución
-            firstRender.current = false;
-            return;
-        }
-
-        setThemeUI(theme)
-    }, [theme])
-
-
-    return <HeroUIProvider>
-        <main className={`valery-${themeUI} text-foreground`}>
-            {children}
-        </main>
-    </HeroUIProvider>;
-};
+        <SessionProvider>
+          {children}
+        </SessionProvider>
+      </NextThemesProvider>
+    </HeroUIProvider>
+  );
+}

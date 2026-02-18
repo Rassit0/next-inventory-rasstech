@@ -1,9 +1,27 @@
-
-import { TopContent, WarehousesTable } from "@/modules/admin/warehouses";
-import { PageHeader, PaginationUI } from "@/ui";
+import {
+  AddModal,
+  getWarehouses,
+  getWarehousesConfig,
+  WarehousesTable,
+} from "@/modules/admin/warehouses";
+import { HeaderTable, PageHeader, PaginationUI } from "@/ui";
 import { Suspense } from "react";
 
-export default function WarehousesPage() {
+interface Props {
+  searchParams: Promise<{
+    search?: string;
+    per_page?: string;
+    page?: string;
+  }>;
+}
+
+export default async function WarehousesPage({ searchParams }: Props) {
+  const { search, page, per_page } = await searchParams;
+
+  const [warehousesResponse, configResponse] = await Promise.all([
+    getWarehouses({ search, page: page || "1", per_page: per_page || "5" }),
+    getWarehousesConfig(),
+  ]);
   return (
     <div className="w-full max-w-full card-shadow space-y-2 py-4">
       <PageHeader
@@ -12,16 +30,28 @@ export default function WarehousesPage() {
         subtitle="Listado de almacenes"
       />
 
-      <TopContent totalItems={50} take={12} />
+      <HeaderTable
+        totalItems={warehousesResponse.total}
+        take={per_page || "5"}
+        nameItems="usuarios"
+        buttonAdd={
+          <AddModal
+            textButton="Agregar usuario"
+            size="sm"
+            config={configResponse}
+          />
+        }
+      />
       <div className="w-full overflow-auto p-2">
-        <WarehousesTable />
+        <WarehousesTable
+          warehouses={warehousesResponse.warehouses}
+          config={configResponse}
+        />
       </div>
 
       <Suspense fallback={<div>Loading...</div>}>
         <div className="w-full overflow-x-auto overflow-y-hidden flex items-center justify-center mt-3">
-          <PaginationUI
-            totalPages={10}
-          />
+          <PaginationUI totalPages={warehousesResponse.last_page} />
         </div>
       </Suspense>
     </div>

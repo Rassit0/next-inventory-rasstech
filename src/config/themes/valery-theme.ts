@@ -175,7 +175,8 @@ export const valeryDark: ConfigTheme = {
         },
         default: {
             DEFAULT: "#a1a1aa",
-            foreground: "#0f172a",     // gris medio = texto oscuro
+            // foreground: "#0f172a",     // gris medio = texto oscuro
+            foreground: "#f4f4f5",     // gris medio = texto oscuro
             "50": "#27272a",           // oscuro → blanco
             "100": "#3f3f46",          // oscuro → blanco
             "200": "#52525b",          // oscuro → blanco

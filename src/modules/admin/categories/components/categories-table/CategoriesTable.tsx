@@ -15,9 +15,9 @@ import {
     Chip,
     Tooltip,
 } from "@heroui/react";
-import { Delete02Icon, Edit02Icon, EyeIcon, ViewIcon } from "hugeicons-react";
-import { EditModal } from "@/modules/admin/branches";
-import { span } from "framer-motion/client";
+import { Delete02Icon, ViewIcon } from "hugeicons-react";
+import { AvatarItem } from "@/ui";
+import { CategoriesConfigResponse, Category, DeleteModal, EditModal, ViewModal } from "@/modules/admin/categories";
 
 export type IconSvgProps = SVGProps<SVGSVGElement> & {
     size?: number;
@@ -26,89 +26,80 @@ export type IconSvgProps = SVGProps<SVGSVGElement> & {
 export const columns = [
     { name: "ID", uid: "id" },
     { name: "CATEGORÍA", uid: "name" },
-    { name: "PADRE", uid: "pattern" },
+    { name: "PADRE", uid: "parent" },
     { name: "FECHA DE REGISTRO", uid: "created_at" },
-    { name: "ESTADO", uid: "status" },
+    { name: "ESTADO", uid: "state" },
     { name: "ACCIONES", uid: "actions" },
 ];
 
-export const branches = [
-    {
-        id: 1,
-        name: "Categoría 1",
-        pattern: "Pattern 1",
-        created_at: "2022-01-01",
-        status: "active",
-    },
-    {
-        id: 2,
-        name: "Categoría 2",
-        pattern: "Pattern 2",
-        created_at: "2022-01-01",
-        status: "active",
-    },
-    {
-        id: 3,
-        name: "Categoría 3",
-        pattern: "Pattern 3",
-        created_at: "2022-01-01",
-        status: "active",
-    },
-];
 
 const statusColorMap: Record<string, ChipProps["color"]> = {
-    active: "success",
-    paused: "danger",
-    vacation: "warning",
+    1: "success",
+    0: "danger",
 };
 
-type User = (typeof branches)[0];
+const statusTextMap: Record<string, 'Activo' | 'Inactivo'> = {
+    1: "Activo",
+    0: "Inactivo",
+};
 
-export const CategoriesTable = () => {
-    const renderCell = useCallback((user: User, columnKey: React.Key) => {
-        const cellValue = user[columnKey as keyof User];
+
+interface Props {
+    categories: Category[];
+    config: CategoriesConfigResponse;
+}
+
+export const CategoriesTable = ({ categories, config }: Props) => {
+    const renderCell = useCallback((item: Category, columnKey: React.Key) => {
 
         switch (columnKey) {
             case "id":
                 return (
-                    <span>{cellValue}</span>
+                    <span>{item.id}</span>
                 );
             case "name":
                 return (
-                    <span>{cellValue}</span>
+                    <div className="flex items-center gap-2">
+                        <AvatarItem title={item.name} image={item.image} size={35} />
+                        <span>{item.name}</span>
+                    </div>
                 );
-            case "pattern":
+            case "parent":
+                if (item.parent) {
+                    return (
+                        <Chip
+                            className="capitalize"
+                            color="default"
+                            size="sm"
+                            variant="flat"
+                        >
+                            {item.parent.name}
+                        </Chip>
+                    );
+                }
                 return (
-                    <span>{cellValue}</span>
+                    <span>Sin padre</span>
                 );
             case "created_at":
                 return (
-                    <span>{new Date().toLocaleDateString()}</span>
+                    <span>{item.created_at.toLocaleDateString()}</span>
                 );
-            case "status":
+            case "state":
                 return (
-                    <Chip className="capitalize" color={statusColorMap[user.status]} size="sm" variant="flat">
-                        {cellValue}
+                    <Chip className="capitalize" color={statusColorMap[item.state]} size="sm" variant="flat">
+                        {statusTextMap[item.state]}
                     </Chip>
                 );
             case "actions":
                 return (
                     <div className="relative flex items-center justify-center gap-2">
-                        <Tooltip content="Ver usuario">
-                            <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                                <ViewIcon />
-                            </span>
-                        </Tooltip>
-                            <EditModal />
-                        <Tooltip color="danger" content="Eliminar usuario">
-                            <span className="text-lg text-danger cursor-pointer active:opacity-50">
-                                <Delete02Icon />
-                            </span>
-                        </Tooltip>
+                        <ViewModal category={item}/>
+                        <EditModal category={item} config={config} />
+                        <DeleteModal category={item}/>
                     </div>
                 );
             default:
-                return cellValue;
+                return item != null ? String(item) : null;
         }
     }, []);
 
@@ -128,7 +119,7 @@ export const CategoriesTable = () => {
                     </TableColumn>
                 )}
             </TableHeader>
-            <TableBody items={branches}>
+            <TableBody items={categories}>
                 {(item) => (
                     <TableRow key={item.id}>
                         {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}

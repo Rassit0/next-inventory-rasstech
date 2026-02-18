@@ -121,7 +121,7 @@ export const SidebarItem = ({ item, isSidebarOpen, hoverSidebar, updateHeightChi
     // Cuando el sidebar está colapsado pero el mouse entra (hoverSidebar = true),
     // reabrimos los submenús que coinciden con la ruta actual
     useEffect(() => {
-        if (isSidebarOpen || hoverSidebar) {
+        if ((!isSidebarOpen && hoverSidebar)||(!isSidebarOpen && window.innerWidth < 1024)) {
             restartOpenSubMenu();
         }
     }, [hoverSidebar, pathname, isSidebarOpen]);
@@ -143,13 +143,18 @@ export const SidebarItem = ({ item, isSidebarOpen, hoverSidebar, updateHeightChi
                         handleNavigation(item.href!);
                     }
                 }}
-                className={`
-                    cursor-pointer min-w-min w-full relative px-2 py-2 flex items-center space-x-4 justify-start rounded-lg duration-300 
-                    ${isSidebarOpen || hoverSidebar ? 'rounded-r-lg' : 'rounded-r-none'} 
-                    ${activeItem && !isSubMenu
-                        ? 'bg-linear-to-l from-primary-600 to-primary-400 text-primary-foreground'
-                        : openSubMenu || activeItem ? 'bg-foreground-800 text-foreground'
-                            : 'hover:bg-default-200'}`}
+                className={
+                    clsx(
+                        'cursor-pointer min-w-min w-full relative px-2 py-2 flex items-center space-x-4 justify-start rounded-lg duration-300',
+                        {
+                            'rounded-r-lg': isSidebarOpen || hoverSidebar, // Solo tiene bordes cuando el sidebar esta abierto o en hover(abierto)
+                            'rounded-r-none': !isSidebarOpen && !hoverSidebar, // Cuando el sidebar esta cerrado sin hover
+                            'bg-linear-to-l from-primary-600 to-primary-400 text-primary-foreground': activeItem && !isSubMenu, // Si es link activo
+                            'bg-foreground-800 text-foreground': openSubMenu, // Si es submenu abierto
+                            'hover:bg-default-200': !activeItem && !openSubMenu, // Si es submenu cerrado
+                        }
+                    )
+                }
             >
                 {item.icon ?
                     (

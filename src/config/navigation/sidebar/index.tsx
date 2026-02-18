@@ -1,51 +1,127 @@
-import { FaPlus, FaList, FaFileImport, FaExchangeAlt } from 'react-icons/fa';
-import { Archive02Icon, ChefHatIcon, Home01Icon, LockPasswordIcon, ProductLoadingIcon, RepairIcon, Setting07Icon, ShieldUserIcon, Store01Icon, Tag01Icon, UserGroupIcon, UserMultiple02Icon, WarehouseIcon, WeightScaleIcon } from 'hugeicons-react';
-import { HugeiconsIcon } from '@hugeicons/react';
-import { HotelBellIcon } from '@hugeicons/core-free-icons';
-import { NavSection } from '@/ui';
-
+import {
+  Home01Icon,
+  LockPasswordIcon,
+  ProductLoadingIcon,
+  RepairIcon,
+  Store01Icon,
+  Tag01Icon,
+  UserMultiple02Icon,
+  WarehouseIcon,
+  WeightScaleIcon,
+} from "hugeicons-react";
+import { NavSection } from "@/ui";
 
 export const sidebarNavigation: NavSection[] = [
   {
     items: [
       {
-        label: 'Inicio',
-        href: '/',
-        action: 'read',
-        subject: 'home',
+        label: "Inicio",
+        href: "/",
+        action: "dashboard",
+        subject: "home",
         icon: <Home01Icon strokeWidth={2} size={25} />,
       },
     ],
   },
   {
-    title: 'Acceso',
+    title: "Acceso",
     items: [
       {
-        label: 'Roles y Permisos',
-        href: '/roles-permissions',
-        action: 'read',
-        subject: 'app',
+        label: "Roles y Permisos",
+        href: "/roles",
+        action: "list_role",
+        subject: "app",
         icon: <LockPasswordIcon strokeWidth={2} size={25} />,
       },
       {
-        label: 'Usuarios',
-        href: '/users',
-        action: 'list_user',
-        subject: 'app',
+        label: "Usuarios",
+        href: "/users",
+        action: "list_user",
+        subject: "app",
         icon: <UserMultiple02Icon strokeWidth={2} size={25} />,
       },
       {
-        label: 'Configuraciones',
+        label: "Configuraciones",
         // href: '/dashboard/warehouses',
-        action: 'settings',
-        subject: 'app',
+        action: "settings",
+        subject: "app",
         icon: <RepairIcon strokeWidth={2} size={25} />,
         children: [
-          { label: 'Sucursales', href: '/branches', icon: <Store01Icon strokeWidth={2} size={25} />, action: 'settings', subject: 'app' },
-          { label: 'Almacenes', href: '/warehouses', icon: <WarehouseIcon strokeWidth={2} size={25} />, action: 'settings', subject: 'app' },
-          { label: 'Categorías', href: '/categories', icon: <Tag01Icon strokeWidth={2} size={25} />, action: 'settings', subject: 'app' },
-          { label: 'Proveedores', href: '/suppliers', icon: <Store01Icon strokeWidth={2} size={25} />, action: 'settings', subject: 'app' },
-          { label: 'Unidades', href: '/units', icon: <WeightScaleIcon strokeWidth={2} size={25} />, action: 'settings', subject: 'app' },
+          {
+            label: "Sucursales",
+            href: "/branches",
+            icon: <Store01Icon strokeWidth={2} size={25} />,
+            action: "settings",
+            subject: "app",
+          },
+          {
+            label: "Almacenes",
+            href: "/warehouses",
+            icon: <WarehouseIcon strokeWidth={2} size={25} />,
+            action: "settings",
+            subject: "app",
+          },
+          {
+            label: "Categorías",
+            href: "/categories",
+            icon: <Tag01Icon strokeWidth={2} size={25} />,
+            action: "settings",
+            subject: "app",
+          },
+          {
+            label: "Proveedores",
+            href: "/suppliers",
+            icon: <Store01Icon strokeWidth={2} size={25} />,
+            action: "settings",
+            subject: "app",
+          },
+          {
+            label: "Unidades",
+            href: "/units",
+            icon: <WeightScaleIcon strokeWidth={2} size={25} />,
+            action: "settings",
+            subject: "app",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Comercial",
+    items: [
+      // {
+      //   label: 'Roles y Permisos',
+      //   href: '/roles-permissions',
+      //   action: 'read',
+      //   subject: 'app',
+      //   icon: <LockPasswordIcon strokeWidth={2} size={25} />,
+      // },
+      // {
+      //   label: 'Usuarios',
+      //   href: '/users',
+      //   action: 'list_user',
+      //   subject: 'app',
+      //   icon: <UserMultiple02Icon strokeWidth={2} size={25} />,
+      // },
+      {
+        label: "Productos",
+        // href: '/dashboard/warehouses',
+        action: "settings",
+        subject: "app",
+        icon: <ProductLoadingIcon strokeWidth={2} size={25} />,
+        children: [
+          {
+            label: "Registrar",
+            href: "/products/add",
+            action: "settings",
+            subject: "app",
+          },
+          {
+            label: "Listar",
+            href: "/products",
+            action: "settings",
+            subject: "app",
+          },
         ],
       },
     ],

@@ -2,7 +2,7 @@
 import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Input, Selection } from '@heroui/react'
 import { Add01Icon, ArrowDown01Icon, Search01Icon } from 'hugeicons-react'
 import React from 'react'
-import { AddModal } from '../add-moodal/AddModal';
+import { AddModal, UsersConfigResponse } from '@/modules/admin/users';
 
 const statusOptions = [
     { name: "Active", uid: "active" },
@@ -13,10 +13,10 @@ const statusOptions = [
 interface Props {
     totalItems: number;
     take: number;
-    
+    config: UsersConfigResponse;
 }
 
-export const TopContent = ({ totalItems,take }: Props) => {
+export const TopContent = ({ totalItems,take,config }: Props) => {
     
     return (
         <div className="flex flex-col gap-4 p-4">
@@ -62,7 +62,7 @@ export const TopContent = ({ totalItems,take }: Props) => {
                             ))}
                         </DropdownMenu>
                     </Dropdown>
-                    <AddModal textButton="Agregar usuario" sizeButton="sm" />
+                    <AddModal textButton="Agregar usuario" sizeButton="sm" config={config} />
                 </div>
             </div>
             <div className="flex justify-between items-center">

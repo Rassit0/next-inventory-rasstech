@@ -17,7 +17,7 @@ export const Navbar = () => {
                 </div>
 
                 {/* <!-- Ícono de Notificación y Perfil --> */}
-                <div className="space-x-4">
+                <div className="flex justify-center items-center space-x-4">
                     {/* <Button
                         isIconOnly
                         variant="light"

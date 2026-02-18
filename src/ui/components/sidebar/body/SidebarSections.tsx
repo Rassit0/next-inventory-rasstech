@@ -1,20 +1,24 @@
-
-import { NavSection } from '@/ui';
-import { SidebarSection } from './SidebarSection';
+import { SidebarSection } from "./SidebarSection";
+import { sidebarNavigation } from "@/config/navigation";
 
 interface Props {
-    sections: NavSection[];
-    isSidebarOpen: boolean;
-    hoverSidebar: boolean;
+  isSidebarOpen: boolean;
+  hoverSidebar: boolean;
 }
 
-export const SidebarSections = ({ sections, isSidebarOpen, hoverSidebar }: Props) => {
+export const SidebarSections = ({ isSidebarOpen, hoverSidebar }: Props) => {
+  const sections = sidebarNavigation;
 
-    return (
-        <div className={`pb-2 space-y-2`}>
-            {sections.map((section, index) => (
-                <SidebarSection key={index} section={section} isSidebarOpen={isSidebarOpen} hoverSidebar={hoverSidebar} />
-            ))}
-        </div>
-    )
-}
+  return (
+    <div className={`pb-2 space-y-2`}>
+      {sections.map((section, index) => (
+        <SidebarSection
+          key={index}
+          section={section}
+          isSidebarOpen={isSidebarOpen}
+          hoverSidebar={hoverSidebar}
+        />
+      ))}
+    </div>
+  );
+};

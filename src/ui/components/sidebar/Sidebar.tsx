@@ -1,13 +1,11 @@
 'use client'
 
-import { sidebarNavigation } from '@/config/navigation'
 import { useEffect, useState } from 'react'
 import { SidebarHeader } from './header/SidebarHeader';
-import { SidebarBody } from './body/SidebarBody';
+import { SidebarBody } from '@/ui';
 import { SidebarFooter } from './footer/SidebarFooter';
 import clsx from 'clsx';
 import { useUIStore } from '@/ui';
-import { appFont, titleFont } from '@/config/fonts/fonts';
 
 
 export const Sidebar = () => {
@@ -76,6 +74,7 @@ export const Sidebar = () => {
                 }
             )} />
             < div
+                // hidden
                 className={clsx(
                     `overflow-hidden 
                     bg-background 
@@ -113,7 +112,6 @@ export const Sidebar = () => {
                 >
                     {/* sidebar body */}
                     <SidebarBody
-                        sections={sidebarNavigation}
                         isSidebarOpen={isSidebarOpen}
                         hoverSidebar={hoverSidebar}
                         closeSidebar={closeSidebar}

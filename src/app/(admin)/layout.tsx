@@ -7,21 +7,14 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
 
     return (
-        <div className={`bg-background w-screen h-screen`}>
-
-            <div className="flex h-full">
-
-                {/* Wrapper que anima altura (rápido) */}
+        <div className="flex flex-col h-screen bg-background">
+            <div className="flex flex-1 overflow-hidden">
                 <Sidebar />
-
-                <div className={`flex-1 w-full h-full`}>
-                    {/* <nav className="flex flex-row bg-background border-b border-gray-300 h-12"> */}
+                <div className="flex-1 flex flex-col overflow-hidden">
                     <Navbar />
-
-                    {/* pagina */}
-                    <div className="p-4 overflow-y-auto w-full h-[calc(100vh-4rem)]">
+                    <main className="flex-1 overflow-y-auto p-4">
                         {children}
-                    </div>
+                    </main>
                 </div>
             </div>
         </div>

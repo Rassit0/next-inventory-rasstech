@@ -20,12 +20,14 @@ export default async function RootLayout({
   const cookieTheme = (cookieStore.get('modeTheme')?.value || 'dark') as 'light' | 'dark';
 
   return (
-    <html lang="en">
+    <html suppressHydrationWarning lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${appFont.className} antialiased`}
       >
-        <Providers modeTheme={cookieTheme}>
-          {children}
+        <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
+          <main>
+            {children}
+          </main>
         </Providers>
       </body>
     </html>
