@@ -11,11 +11,11 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'images.unsplash.com',
       },
-      // {
-      //   protocol: 'http',
-      //   hostname: '192.168.1.5',
-      //   port: '8000',
-      // },
+      {
+        protocol: 'https',
+        hostname: 'api-inventory-laravel-production.up.railway.app',
+        port: '8000',
+      },
       
       {
         protocol: 'http',

@@ -349,10 +349,20 @@ export const AddModal = ({ textButton, sizeButton, config }: Props) => {
                   </Form>
                 </ModalBody>
                 <ModalFooter>
-                  <Button color="danger" variant="light" onPress={onClose}>
+                  <Button
+                    isDisabled={isLoading}
+                    color="danger"
+                    variant="light"
+                    onPress={onClose}
+                  >
                     Cancelar
                   </Button>
-                  <Button color="primary" type="submit">
+                  <Button
+                    isDisabled={isLoading}
+                    isLoading={isLoading}
+                    color="primary"
+                    onPress={() => formRef.current?.requestSubmit()}
+                  >
                     Guardar
                   </Button>
                 </ModalFooter>
