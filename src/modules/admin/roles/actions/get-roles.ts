@@ -40,7 +40,7 @@ export const getRoles = async ({
           Accept: "application/json",
         },
         next: {
-          tags: ["roles"],
+          tags: ["users"],
           revalidate: 3600,
         },
       },
@@ -51,8 +51,10 @@ export const getRoles = async ({
     if (error.statusCode === 401) {
       redirect(`/login?${params.toString()}`);
     }
-    if(error.statusCode === 403){
-      redirect(`/error?status=403&message=No tienes permiso para ver esta página`);
+    if (error.statusCode === 403) {
+      redirect(
+        `/error?status=403&message=No tienes permiso para ver esta página`,
+      );
     }
     throw new Error("Error al obtener los roles");
   }

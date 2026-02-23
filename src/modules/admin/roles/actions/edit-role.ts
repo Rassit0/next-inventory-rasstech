@@ -2,7 +2,7 @@
 
 import { auth } from "@/auth.config";
 import { apiFetch } from "@/shared/utils";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import { Role } from "@/modules/admin/roles";
 
@@ -52,6 +52,7 @@ export const editRole = async ({
     });
 
     revalidatePath("/roles");
+    revalidateTag("roles", "max");
 
     return {
       error: false,

@@ -1,7 +1,7 @@
 "use server";
 
 import { apiFetch } from "@/shared/utils";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { auth } from "@/auth.config";
 import { redirect } from "next/navigation";
 import { Branch } from "@/modules/admin/branches";
@@ -56,6 +56,7 @@ export const addBranch = async ({
     });
 
     revalidatePath("/branches");
+    revalidateTag("branches", "max");
     return {
       error: false,
       message: resp.message,

@@ -40,6 +40,7 @@ export const deleteRole = async (
     console.log({ resp });
 
     revalidatePath("/roles");
+    revalidateTag("roles", "max");
 
     // 🔥 INVALIDA el cache
     // revalidateTag('product-config', 'page');

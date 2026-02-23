@@ -22,7 +22,7 @@ export const getUsersConfig = async (
           Accept: "application/json",
         },
         next: {
-          tags: ["users-config"],
+          tags: ["roles", "branches"],
           revalidate: 3600,
         },
       },

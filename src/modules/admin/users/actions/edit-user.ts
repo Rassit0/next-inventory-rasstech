@@ -77,6 +77,8 @@ export const editUser = async ({
     });
 
     revalidatePath("/users");
+    revalidatePath("/roles");
+    revalidateTag("session", 'max')
 
     return {
       error: false,

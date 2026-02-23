@@ -1,9 +1,8 @@
 // First, import the types from next-auth
-import { DefaultSession, DefaultUser } from "next-auth";
+import { DefaultSession } from "next-auth";
 
 declare module "next-auth" {
-  // This is your backend user model
-  interface User extends DefaultUser {
+  interface User {
     id: string;
     full_name: string;
     email: string;
@@ -15,7 +14,6 @@ declare module "next-auth" {
     avatar: string | null;
     // NextAuth required fields
     emailVerified: Date | null;
-    avatar?: string | null;
 
     // backend auth data
     access_token: string;
@@ -23,6 +21,7 @@ declare module "next-auth" {
     expires_at: number;
   }
 
+  // This is your backend user model
   interface Session extends DefaultSession {
     user: User;
     access_token: string;
@@ -35,7 +34,7 @@ import { DefaultJWT } from "next-auth/jwt";
 
 declare module "next-auth/jwt" {
   interface JWT extends DefaultJWT {
-    user: import("next-auth").User;
+    user: User;
     access_token: string;
     expires_at: number;
   }

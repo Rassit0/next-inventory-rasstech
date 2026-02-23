@@ -51,6 +51,7 @@ export const addRole = async ({
     });
 
     revalidatePath("/roles");
+    revalidateTag("roles", "max");
 
     // 🔥 INVALIDA el cache
     // revalidateTag('product-config', 'page');

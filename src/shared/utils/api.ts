@@ -21,7 +21,7 @@ export async function apiFetch<T>({
     ...options,
   });
 
-  console.log({ res });
+  // console.log({ res });
   if (res.status === 401) {
     // Token inválido o expirado
     throw {

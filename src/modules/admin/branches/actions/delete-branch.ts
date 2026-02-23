@@ -40,6 +40,7 @@ export const deleteBranch = async (
     console.log({ resp });
 
     revalidatePath("/branches");
+    revalidateTag("branches", "max");
 
     // 🔥 INVALIDA el cache
     // revalidateTag('product-config', 'page');

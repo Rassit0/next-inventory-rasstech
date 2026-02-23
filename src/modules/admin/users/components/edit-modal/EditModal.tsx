@@ -28,6 +28,8 @@ import {
   User,
   UsersConfigResponse,
 } from "@/modules/admin/users";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 interface Props {
   textButton?: string;
@@ -43,6 +45,7 @@ export const EditModal = ({
   user,
 }: Props) => {
   const formRef = useRef<HTMLFormElement>(null);
+  const router = useRouter();
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isLoading, setIsLoading] = useState(false);
@@ -68,6 +71,15 @@ export const EditModal = ({
 
   const [firstSubmit, setFirstSubmit] = useState(false);
   const [errors, setErrors] = useState({});
+
+  const { data: session, status: statusSession, update } = useSession();
+
+  useEffect(() => {
+    const updateSession = async () => {
+      await update();
+    };
+    updateSession();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -104,7 +116,11 @@ export const EditModal = ({
     // console.log({ data })
 
     setIsLoading(true);
-    const { error, message } = await editUser({ id: user.id, data });
+    const {
+      error,
+      user: userUpdated,
+      message,
+    } = await editUser({ id: user.id, data });
     setIsLoading(false);
 
     if (error) {
@@ -128,6 +144,10 @@ export const EditModal = ({
       variant: "bordered",
       shouldShowTimeoutProgress: true,
     });
+    
+    if (session?.user.id === user.id.toString()) {
+      window.location.reload();
+    }
 
     onClose();
   };

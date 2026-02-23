@@ -2,7 +2,7 @@ import type { NextAuthConfig, User } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { login } from "./modules/auth";
+import { login, verifyToken } from "./modules/auth";
 import NextAuth from "next-auth";
 
 const protectedRoutes = [
@@ -16,6 +16,9 @@ const protectedRoutes = [
 export const authConfig = {
   pages: {
     signIn: "/login",
+  },
+  session: {
+    strategy: "jwt",
   },
   callbacks: {
     authorized({ auth, request: { nextUrl, method } }) {
@@ -41,8 +44,7 @@ export const authConfig = {
 
       return true;
     },
-    jwt({ token, user }) {
-      // Aqui se puede refrescar el user
+    async jwt({ token, user }) {
       // Login inicial
       if (user) {
         token.user = user;
@@ -55,13 +57,25 @@ export const authConfig = {
         return null; // fuerza logout
       }
 
+      const userVerified = await verifyToken({ token: token.access_token });
+      if (userVerified && userVerified.response) {
+        token.user = {
+          ...token.user,
+          name: userVerified.response.user.name,
+          full_name: userVerified.response.user.full_name,
+          email: userVerified.response.user.email,
+          image: userVerified.response.user.avatar,
+          role: userVerified.response.user.role,
+        };
+      }
+
       return token;
     },
-    session({ session, token }) {
+    async session({ session, token }) {
       // Si el token no existe o expiró,
       // devuelve la sesión "vacía" por defecto
       if (token) {
-        session.user = token.user as User;
+        session.user = token.user;
         session.access_token = token.access_token as string;
         session.expires_at = token.expires_at as number;
       }
@@ -70,7 +84,7 @@ export const authConfig = {
   },
   providers: [
     Credentials({
-      async authorize(credentials) {
+      async authorize(credentials, request: Request) {
         const parsedCredentials = z
           .object({ email: z.string().email(), password: z.string().min(6) })
           .safeParse(credentials);
@@ -96,11 +110,11 @@ export const authConfig = {
 
           // Map the response to match the User type expected by NextAuth
           const user = {
-            id: response.user.email, // or response.user.id if available
+            id: response.user.id, // Keep as number
             email: response.user.email,
             name: response.user.full_name,
             full_name: response.user.full_name,
-            image: response.user.avatar,
+            avatar: response.user.avatar,
             emailVerified: new Date(),
             role: {
               ...response.user.role,

@@ -14,7 +14,7 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'api-inventory-laravel-production.up.railway.app',
-        port: '8000',
+        // port: '8000',
       },
       
       {
