@@ -57,17 +57,17 @@ export const authConfig = {
         return null; // fuerza logout
       }
 
-      // const userVerified = await verifyToken({ token: token.access_token });
-      // if (userVerified && userVerified.response) {
-      //   token.user = {
-      //     ...token.user,
-      //     name: userVerified.response.user.name,
-      //     full_name: userVerified.response.user.full_name,
-      //     email: userVerified.response.user.email,
-      //     image: userVerified.response.user.avatar,
-      //     role: userVerified.response.user.role,
-      //   };
-      // }
+      const userVerified = await verifyToken({ token: token.access_token });
+      if (userVerified && userVerified.response) {
+        token.user = {
+          ...token.user,
+          name: userVerified.response.user.name,
+          full_name: userVerified.response.user.full_name,
+          email: userVerified.response.user.email,
+          image: userVerified.response.user.avatar,
+          role: userVerified.response.user.role,
+        };
+      }
 
       return token;
     },
