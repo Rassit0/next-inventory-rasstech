@@ -20,7 +20,7 @@ import {
   Tooltip,
   useDisclosure,
 } from "@heroui/react";
-import { Add01Icon, Edit02Icon } from "hugeicons-react";
+import { Edit02Icon } from "hugeicons-react";
 import { useEffect, useRef, useState } from "react";
 import {
   addUser,
