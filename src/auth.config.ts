@@ -4,6 +4,9 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { login, verifyToken } from "./modules/auth";
 import NextAuth from "next-auth";
+// import { cookies } from "next/headers";
+// import { getCookie } from "cookies-next";
+// import { cookies as getCookies } from "next/headers";
 
 const protectedRoutes = [
   "/dashboard",
@@ -45,6 +48,9 @@ export const authConfig = {
       return true;
     },
     async jwt({ token, user }) {
+      const { cookies } = await import("next/headers");
+      const cookieStore = await cookies();
+      const userUpdated = cookieStore.get("userUpdated")?.value;
       // Login inicial
       if (user) {
         token.user = user;
@@ -57,16 +63,19 @@ export const authConfig = {
         return null; // fuerza logout
       }
 
-      const userVerified = await verifyToken({ token: token.access_token });
-      if (userVerified && userVerified.response) {
-        token.user = {
-          ...token.user,
-          name: userVerified.response.user.name,
-          full_name: userVerified.response.user.full_name,
-          email: userVerified.response.user.email,
-          image: userVerified.response.user.avatar,
-          role: userVerified.response.user.role,
-        };
+      // Solo si se actualizo el usuario actual
+      if (userUpdated === "true") {
+        const userVerified = await verifyToken({ token: token.access_token });
+        if (userVerified && userVerified.response) {
+          token.user = {
+            ...token.user,
+            name: userVerified.response.user.name,
+            full_name: userVerified.response.user.full_name,
+            email: userVerified.response.user.email,
+            image: userVerified.response.user.avatar,
+            role: userVerified.response.user.role,
+          };
+        }
       }
 
       return token;

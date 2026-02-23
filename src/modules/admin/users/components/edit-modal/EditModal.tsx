@@ -29,7 +29,7 @@ import {
   UsersConfigResponse,
 } from "@/modules/admin/users";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { deleteCookie } from "cookies-next";
 
 interface Props {
   textButton?: string;
@@ -44,8 +44,10 @@ export const EditModal = ({
   usersConfig,
   user,
 }: Props) => {
+
+  deleteCookie('userUpdated');
+
   const formRef = useRef<HTMLFormElement>(null);
-  const router = useRouter();
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isLoading, setIsLoading] = useState(false);

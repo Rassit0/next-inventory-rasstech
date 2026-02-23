@@ -6,6 +6,7 @@ import { Category } from "@/modules/admin/categories";
 import { auth } from "@/auth.config";
 import { redirect } from "next/navigation";
 import { User } from "../interfaces/user.interface";
+import { cookies } from "next/headers";
 
 interface Props {
   id: number;
@@ -48,6 +49,8 @@ export const editUser = async ({
     redirect(`/login?${params.toString()}`);
   }
 
+  const cookieStore = await cookies();
+
   const formData = new FormData();
   formData.append("name", data.name);
   if (data.surname) formData.append("surname", data.surname);
@@ -75,6 +78,8 @@ export const editUser = async ({
         body: formData,
       },
     });
+
+    cookieStore.set("userUpdated", "true");
 
     revalidatePath("/users");
     revalidatePath("/roles");

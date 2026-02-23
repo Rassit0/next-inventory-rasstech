@@ -1,13 +1,8 @@
 "use server";
 
 import { apiFetch } from "@/shared/utils";
-import { revalidatePath } from "next/cache";
-import { Category } from "@/modules/admin/categories";
 import { VerifyTokenResponse } from "../interfaces/login.interface";
 
-import { signIn } from "@/auth.config";
-// import { signIn } from '@/auth';
-import { AuthError } from "next-auth";
 
 interface Props {
   token: string;
