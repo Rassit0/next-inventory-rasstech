@@ -11,6 +11,7 @@ interface Props {
   parent_id?: string;
   image?: File;
   callbackUrl?: string;
+  revalidatePath?: string;
 }
 
 interface Response {
@@ -27,6 +28,7 @@ export const addCategory = async ({
   parent_id,
   image,
   callbackUrl = "/categories",
+  revalidatePath: rPath = "/categories",
 }: Props): Promise<Response> => {
   const params = new URLSearchParams();
   params.set("callbackUrl", callbackUrl);
@@ -54,7 +56,8 @@ export const addCategory = async ({
       },
     });
 
-    revalidatePath("/categories");
+    revalidatePath(rPath);
+    revalidateTag("categories", "max");
 
     // 🔥 INVALIDA el cache
     // revalidateTag('product-config', 'page');

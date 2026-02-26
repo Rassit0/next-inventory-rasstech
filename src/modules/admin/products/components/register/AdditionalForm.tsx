@@ -9,9 +9,11 @@ import {
   SelectItem,
 } from "@heroui/react";
 import { ProductConfig } from "@/modules/admin/products";
+import { AddModal, CategoriesConfigResponse } from "@/modules/admin/categories";
 
 interface Props {
   config: ProductConfig;
+  configCategory: CategoriesConfigResponse;
   is_discount: boolean;
   setIs_discount: (value: boolean) => void;
   is_gift: boolean;
@@ -26,6 +28,7 @@ interface Props {
 
 export const AdditionalForm = ({
   config,
+  configCategory,
   is_discount,
   is_gift,
   setIs_discount,
@@ -44,21 +47,24 @@ export const AdditionalForm = ({
       </CardHeader>
       <CardBody className="flex flex-row justify-between items-center min-w-fit min-h-fit">
         <div className="w-full grid grid-cols-1 gap-6">
-          <Select
-            isRequired
-            radius="lg"
-            label="Categoría"
-            variant="bordered"
-            selectedKeys={[category_id?.toString() || ""]}
-            onSelectionChange={(v) =>
-              setCategory_id(v.currentKey ? Number(v.currentKey) : null)
-            }
-            onChange={(e) => setCategory_id(Number(e.target.value))}
-          >
-            {config.categories.map((category) => (
-              <SelectItem key={category.id}>{category.name}</SelectItem>
-            ))}
-          </Select>
+          <div className="flex items-center gap-2">
+            <Select
+              isRequired
+              radius="lg"
+              label="Categoría"
+              variant="bordered"
+              selectedKeys={[category_id?.toString() || ""]}
+              onSelectionChange={(v) =>
+                setCategory_id(v.currentKey ? Number(v.currentKey) : null)
+              }
+              onChange={(e) => setCategory_id(Number(e.target.value))}
+            >
+              {config.categories.map((category) => (
+                <SelectItem key={category.id}>{category.name}</SelectItem>
+              ))}
+            </Select>
+            <AddModal isIcon revalidatePath="/products/add" config={configCategory} />
+          </div>
           <Checkbox
             name="is_gift"
             isSelected={is_gift}

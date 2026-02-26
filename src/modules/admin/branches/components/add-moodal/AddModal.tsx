@@ -159,8 +159,8 @@ export const AddModal = ({ textButton, size }: Props) => {
                 <ModalBody>
                   <Form
                     ref={formRef}
-                    className="grid grid-cols-1 gap-y-4"
                     onSubmit={onSubmit}
+                    className="grid grid-cols-1 gap-y-4"
                     validationErrors={errors}
                   >
                     <Input

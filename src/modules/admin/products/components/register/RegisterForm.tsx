@@ -12,9 +12,11 @@ import {
 } from "@/modules/admin/products";
 import { ImagesUploadForm } from "./ImagesUploadForm";
 import { useRouter } from "next/navigation";
+import { CategoriesConfigResponse } from "@/modules/admin/categories";
 
 interface Props {
   config: ProductConfig;
+  configCategory: CategoriesConfigResponse;
 }
 
 interface PreviewFile extends File {
@@ -35,7 +37,7 @@ interface ProductWallet {
   price: number;
 }
 
-export const RegisterForm = ({ config }: Props) => {
+export const RegisterForm = ({ config, configCategory }: Props) => {
   const router = useRouter();
 
   const [errors, setErrors] = useState<any>({});
@@ -68,6 +70,9 @@ export const RegisterForm = ({ config }: Props) => {
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Solo ejecutar si es el form correcto
+    if ((e.target as HTMLFormElement).id !== "register-product-form") return;
 
     let validationErrors: Record<string, string> = {};
 
@@ -172,6 +177,7 @@ export const RegisterForm = ({ config }: Props) => {
 
   return (
     <Form
+      id="register-product-form"
       ref={formRef}
       onSubmit={onSubmit}
       validationErrors={errors}
@@ -214,6 +220,7 @@ export const RegisterForm = ({ config }: Props) => {
         {/* Adicionales */}
         <AdditionalForm
           config={config}
+          configCategory={configCategory}
           category_id={category_id}
           setCategory_id={setCategory_id}
           is_discount={is_discount}

@@ -40,6 +40,8 @@ export const deleteCategory = async (
     console.log({ resp });
 
     revalidatePath("/categories");
+    revalidatePath("/products/add");
+    // revalidateTag('categories','max')
 
     // 🔥 INVALIDA el cache
     // revalidateTag('product-config', 'page');

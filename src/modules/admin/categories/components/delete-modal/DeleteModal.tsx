@@ -12,6 +12,7 @@ import {
   addToast,
 } from "@heroui/react";
 import { Delete01Icon } from "hugeicons-react";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Category, deleteCategory } from "@/modules/admin/categories";
 
@@ -22,6 +23,7 @@ interface Props {
 export const DeleteModal = ({ category }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const handleDelete = async () => {
     setIsLoading(true);
@@ -50,6 +52,7 @@ export const DeleteModal = ({ category }: Props) => {
       shouldShowTimeoutProgress: true,
     });
 
+    router.refresh();
     onClose();
   };
 
