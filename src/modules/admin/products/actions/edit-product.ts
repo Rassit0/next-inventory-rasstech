@@ -33,7 +33,7 @@ export const editCategory = async ({ id, data }: Props): Promise<Response> => {
     revalidatePath("/categories");
 
     // 🔥 INVALIDA el cache
-    revalidateTag("products", "page");
+    revalidateTag("products", "max");
 
     return {
       error: false,

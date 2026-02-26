@@ -21,9 +21,10 @@ export const getCategoriesConfig = async (
           Authorization: `Bearer ${session.access_token}`,
           Accept: "application/json",
         },
+        cache: "force-cache",
         next: {
-          tags: ["category-config"],
-          revalidate: 3600,
+          tags: ["categories"],
+          // revalidate: 3600,
         },
       },
     });

@@ -40,7 +40,7 @@ export default async function UnitsPage({ searchParams }: Props) {
       <HeaderTable
         totalItems={50}
         take={per_page || "5"}
-        componentsExtra={<AddModal textButton="Agregar unidad" size="sm" />}
+        buttonAdd={<AddModal textButton="Agregar unidad" size="sm" />}
       />
       <div className="w-full overflow-auto p-2">
         <UnitsTable

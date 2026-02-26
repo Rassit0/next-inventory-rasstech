@@ -10,16 +10,20 @@ interface SearchParams {
   search?: string;
   per_page?: string;
   page?: string;
+  callbackUrl?: string;
 }
 
 export const getBranches = async ({
   search,
   page,
   per_page,
+  callbackUrl = "/branches",
 }: SearchParams): Promise<BranchesResponse> => {
+  const params = new URLSearchParams();
+  params.set("callbackUrl", callbackUrl);
   const session = await auth();
   if (!session?.access_token) {
-    redirect("/login");
+    redirect(`/login?${params.toString()}`);
   }
 
   try {
@@ -49,8 +53,11 @@ export const getBranches = async ({
       ...res,
       branches,
     };
-  } catch (error) {
+  } catch (error: any) {
     console.log(error);
+    if (error.statusCode === 401) {
+      redirect(`/login?${params.toString()}`);
+    }
     throw new Error("Error al obtener las sucursales");
   }
 };

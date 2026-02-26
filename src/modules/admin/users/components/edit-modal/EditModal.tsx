@@ -1,7 +1,6 @@
 "use client";
 
 import { Providers } from "@/shared/providers";
-import { ImagesUpload } from "@/ui/components/upload-files";
 import {
   addToast,
   Button,
@@ -15,7 +14,6 @@ import {
   Radio,
   RadioGroup,
   Select,
-  Selection,
   SelectItem,
   Tooltip,
   useDisclosure,
@@ -23,7 +21,6 @@ import {
 import { Edit02Icon } from "hugeicons-react";
 import { useEffect, useRef, useState } from "react";
 import {
-  addUser,
   editUser,
   User,
   UsersConfigResponse,
@@ -44,8 +41,6 @@ export const EditModal = ({
   usersConfig,
   user,
 }: Props) => {
-
-  deleteCookie('userUpdated');
 
   const formRef = useRef<HTMLFormElement>(null);
 

@@ -92,7 +92,7 @@ export const ProductsTable = ({ products, config }: Props) => {
                     );
                 }
                 return (
-                    <span>Sin padre</span>
+                    <span>N/A</span>
                 );
             case 'is_gift':
                 return (

@@ -21,9 +21,10 @@ export const getUsersConfig = async (
           Authorization: `Bearer ${session.access_token}`,
           Accept: "application/json",
         },
+        cache: "force-cache",
         next: {
           tags: ["roles", "branches"],
-          revalidate: 3600,
+          // revalidate: 3600,
         },
       },
     });

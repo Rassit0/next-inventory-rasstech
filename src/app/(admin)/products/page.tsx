@@ -1,22 +1,53 @@
-import { AddModal, Filters, getProductConfig, getProducts, ImportExcelModal, ProductsTable } from "@/modules/admin/products";
+import {
+  ButtonAdd,
+  Filters,
+  getProductConfig,
+  getProducts,
+  ProductsTable,
+} from "@/modules/admin/products";
 import { HeaderTable, PageHeader, PaginationUI } from "@/ui";
 import { Suspense } from "react";
 
 interface Props {
   searchParams: Promise<{
+    category_id?: string;
     search?: string;
     per_page?: string;
     page?: string;
-  }>
+    branch_id?: string;
+    warehouse_id?: string;
+    allow_without_stock?: string;
+    is_gift?: string;
+    state?: string;
+  }>;
 }
 
 export default async function ProductsPage({ searchParams }: Props) {
-
-  const { search, page, per_page } = await searchParams;
+  const {
+    search,
+    page,
+    per_page,
+    category_id,
+    branch_id,
+    warehouse_id,
+    allow_without_stock,
+    is_gift,
+    state,
+  } = await searchParams;
 
   const [productsResponse, configResponse] = await Promise.all([
-    getProducts({ search, page: page || '1', per_page: per_page || '5' }),
-    getProductConfig()
+    getProducts({
+      search,
+      page: page || "1",
+      per_page: per_page || "5",
+      category_id,
+      branch_id,
+      warehouse_id,
+      allow_without_stock,
+      is_gift,
+      state,
+    }),
+    getProductConfig(),
   ]);
 
   return (
@@ -28,25 +59,26 @@ export default async function ProductsPage({ searchParams }: Props) {
       />
 
       <HeaderTable
-        totalItems={50} take={per_page || '5'}
+        totalItems={productsResponse.meta.total}
+        take={per_page || "5"}
         componentsExtra={
           <>
-            <Filters />
-            <ImportExcelModal />
+            <Filters config={configResponse} />
           </>
         }
-        buttonAdd={<AddModal textButton="Agregar producto" size="sm" config={configResponse} />}
+        buttonAdd={<ButtonAdd />}
       />
       <div className="w-full overflow-auto p-2">
-        <ProductsTable products={productsResponse.products} config={configResponse} />
+        <ProductsTable
+          products={productsResponse.products}
+          config={configResponse}
+        />
         {/* {JSON.stringify(productsResponse)} */}
       </div>
 
       <Suspense fallback={<div>Loading...</div>}>
         <div className="w-full overflow-x-auto overflow-y-hidden flex items-center justify-center mt-3">
-          <PaginationUI
-            totalPages={productsResponse.meta.last_page}
-          />
+          <PaginationUI totalPages={productsResponse.meta.last_page} />
         </div>
       </Suspense>
     </div>

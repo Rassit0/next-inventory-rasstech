@@ -21,9 +21,9 @@ export const getWarehousesConfig = async (
           Authorization: `Bearer ${session.access_token}`,
           Accept: "application/json",
         },
+        cache: "force-cache",
         next: {
-          tags: ["warehouses-config"],
-          revalidate: 3600,
+          tags: ["branches",],
         },
       },
     });

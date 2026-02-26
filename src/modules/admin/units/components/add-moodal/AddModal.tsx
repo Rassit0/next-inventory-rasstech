@@ -21,12 +21,13 @@ import {
 import { Add01Icon } from "hugeicons-react";
 import { FormEvent, useEffect, useRef, useState } from "react";
 
-import { addUnit, UnitsConfigResponse } from "@/modules/admin/units";
+import { addUnit, Unit, UnitsConfigResponse } from "@/modules/admin/units";
 import { usePathname } from "next/navigation";
 
 interface Props {
   textButton?: string;
   size?: "sm" | "md" | "lg";
+  onCreated?: (unitCreated: Unit) => void;
 }
 
 export const AddModal = ({ textButton, size }: Props) => {

@@ -86,11 +86,11 @@ export const UsersTable = ({ users, usersConfig }: Props) => {
       case "actions":
         return (
           <div className="relative flex items-center justify-center gap-2">
-            <Tooltip content="Ver usuario">
+            {/* <Tooltip content="Ver usuario">
               <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
                 <ViewIcon />
               </span>
-            </Tooltip>
+            </Tooltip> */}
             <EditModal user={item} usersConfig={usersConfig} />
             <DeleteModal user={item} />
           </div>

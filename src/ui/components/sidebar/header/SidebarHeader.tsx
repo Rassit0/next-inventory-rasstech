@@ -1,8 +1,6 @@
-import { useUIStore } from '@/ui/stores/ui-store';
 import { ArrowRightDoubleIcon } from 'hugeicons-react';
 import Image from 'next/image';
 import { AiOutlineClose } from 'react-icons/ai';
-import { GiChicken } from 'react-icons/gi'
 
 interface Props {
     isSidebarOpen: boolean;
@@ -20,7 +18,9 @@ export const SidebarHeader = ({ isSidebarOpen, hoverSidebar, openSidebar, closeS
                 {/* < div className="text-primary text-3xl" >
                     <GiChicken />
                 </div > */}
-                <Image src="/rasstech_logo.png" alt="Logo" width={50} height={50} />
+                <div className="w-12 h-12 relative">
+                    <Image src="/rasstech_logo.png" alt="Logo" fill className="object-contain" />
+                </div>
                 {/* titulo */}
                 < span className={`${!isSidebarOpen && 'opacity-0'} group-hover:opacity-100 transition duration-150 ease-in-out group-hover:block text-lg font-bold`}>
                     RASSTECH

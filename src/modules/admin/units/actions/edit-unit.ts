@@ -2,7 +2,7 @@
 
 import { apiFetch } from "@/shared/utils";
 import { revalidatePath } from "next/cache";
-import { Unit, UnitConfig } from "@/modules/admin/units";
+import { Unit } from "@/modules/admin/units";
 import { redirect } from "next/navigation";
 import { auth } from "@/auth.config";
 
@@ -19,7 +19,7 @@ interface Props {
 interface Response {
   error: boolean;
   message: string;
-  unit?: UnitConfig;
+  unit?: Unit;
   errors?: {
     [key: string]: string[]; // Permite cualquier clave de tipo string con un array de strings como valor
   };

@@ -5,6 +5,7 @@ export { TopContent } from "./components/users-table/TopContent";
 export { UsersTable } from "./components/users-table/UsersTable";
 export * from "./components/delete-modal/DeleteModal";
 export * from "./components/users-table/filters/Filters";
+export * from './components/ButtonRedirect'
 
 // Interfaces
 export type * from "./interfaces/user.interface";

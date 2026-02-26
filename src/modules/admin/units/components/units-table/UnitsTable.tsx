@@ -16,6 +16,7 @@ import {
   Tooltip,
 } from "@heroui/react";
 import {
+  ConversionModal,
   DeleteModal,
   EditModal,
   Unit,
@@ -77,10 +78,8 @@ export const UnitsTable = ({ units, config }: Props) => {
         return (
           <div className="relative flex items-center justify-center gap-2">
             {/* <ViewModal unit={item} /> */}
-            <EditModal
-              unit={item}
-              config={config}
-            />
+            <ConversionModal unit={item} config={config} />
+            <EditModal unit={item} config={config} />
             <DeleteModal unit={item} />
           </div>
         );

@@ -1,17 +1,15 @@
 "use server";
 
-import { auth } from "@/auth.config";
 import { apiFetch } from "@/shared/utils";
 import { revalidatePath, revalidateTag } from "next/cache";
+import { Unit, UnitConversion } from "@/modules/admin/units";
+import { auth } from "@/auth.config";
 import { redirect } from "next/navigation";
-import { Role } from "@/modules/admin/roles";
 
 interface Props {
-  id: number;
   data: {
-    name: string;
-    description?: string;
-    permissions: string[];
+    unit_id: number;
+    unit_to_id: number;
   };
   callbackUrl?: string;
 }
@@ -19,16 +17,15 @@ interface Props {
 interface Response {
   error: boolean;
   message: string;
-  role?: Role;
+  conversion?: UnitConversion;
   errors?: {
     [key: string]: string[]; // Permite cualquier clave de tipo string con un array de strings como valor
   };
 }
 
-export const editRole = async ({
-  id,
+export const addConversion = async ({
   data,
-  callbackUrl = "/roles",
+  callbackUrl = "/units",
 }: Props): Promise<Response> => {
   const params = new URLSearchParams();
   params.set("callbackUrl", callbackUrl);
@@ -38,36 +35,44 @@ export const editRole = async ({
     redirect(`/login?${params.toString()}`);
   }
   try {
-    const res = await apiFetch<{ message: string; role: Role }>({
-      endpoint: `roles/${id}`,
+    const resp = await apiFetch<{
+      message: string;
+      unit_conversion: UnitConversion;
+    }>({
+      endpoint: `unit-conversions`,
       options: {
-        method: "PUT",
+        method: "POST",
         headers: {
-          Authorization: `Bearer ${session.access_token}`,
           "Content-Type": "application/json",
           Accept: "application/json",
+          Authorization: `Bearer ${session.access_token}`,
         },
         body: JSON.stringify(data),
       },
     });
 
-    // revalidateTag("roles", "max");
-    revalidatePath("/roles");
-    revalidateTag("roles", "max");
+    const respFormated = {
+      ...resp,
+      conversion: {
+        ...resp.unit_conversion,
+        created_at: new Date(resp.unit_conversion.created_at),
+      },
+    };
 
+    revalidatePath("/units");
     return {
       error: false,
-      role: res.role,
-      message: "Rol editado exitosamente",
+      message: resp.message,
+      conversion: respFormated.conversion,
     };
   } catch (error: any) {
-    console.error("Error en editRolePermission:", error); // Depuración
+    console.error("Error en addUnit:", error); // Depuración
     if (error.statusCode === 401) {
       redirect(`/login?${params.toString()}`);
     }
     return {
       error: true,
-      message: "Error al editar la unidad",
+      message: error.message || "Error al editar la unidad",
       errors: error.errors ?? undefined,
     };
     // throw new Error(error instanceof Error ? error.message : 'Error al editar el rol');
